@@ -9,14 +9,10 @@ function QuizViewer() {
     const quizzes = useContext(QuizzesContext).quizzes;
     const user = useContext(UserContext).user;
 
-    console.log(user);
-
     const { name } = useParams();
     const quiz = quizzes.find(quiz => quiz.name.replace(/\s+/g, '') === name.replace(/\s+/g, ''));
 
-    const [answers, setAnswers] = useState([])
-
-    console.log(quiz)
+    const [answers, setAnswers] = useState([]);
 
     useEffect(() => {
         if(!user.admin) {

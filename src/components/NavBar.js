@@ -38,7 +38,7 @@ function NavBar({ onSignOut }) {
             </div>
 
             <ul className="relative px-1 mt-5">
-                <li className="relative" onClick={() =>  navigate("/")}>
+                <li className="relative" onClick={() =>  navigate(`${process.env.PUBLIC_URL}/`)}>
                     <a className="flex items-center text-md font-semibold py-4 px-6 h-12 overflow-hidden text-th-light-text text-ellipsis whitespace-nowrap rounded hover:text-th-title-text hover:bg-th-navbar-hover transition duration-300 ease-in-out" href="#!" data-mdb-ripple="true" data-mdb-ripple-color="stone">
                         <span>Home</span>
                     </a>
@@ -48,21 +48,21 @@ function NavBar({ onSignOut }) {
             {user.admin ? (
                 <>
                 <ul className="relative px-1">
-                    <li className="relative" onClick={() =>  navigate("/uploadquiz")}>
+                    <li className="relative" onClick={() =>  navigate(`${process.env.PUBLIC_URL}/uploadquiz`)}>
                         <a className="flex items-center text-md font-semibold py-4 px-6 h-12 overflow-hidden text-th-light-text text-ellipsis whitespace-nowrap rounded hover:text-th-title-text hover:bg-th-navbar-hover transition duration-300 ease-in-out" href="#!" data-mdb-ripple="true" data-mdb-ripple-color="stone">
                             <span>Upload a Test</span>
                         </a>
                     </li>   
                 </ul>
                 <ul className="relative px-1">
-                    <li className="relative" onClick={() => navigate("/students")}>
+                    <li className="relative" onClick={() => navigate(`${process.env.PUBLIC_URL}/students`)}>
                         <a className="flex items-center text-md font-semibold py-4 px-6 h-12 overflow-hidden text-th-light-text text-ellipsis whitespace-nowrap rounded hover:text-th-title-text hover:bg-th-navbar-hover transition duration-300 ease-in-out" href="#!" data-mdb-ripple="true" data-mdb-ripple-color="stone">
                             <span>Users</span>
                         </a>
                     </li>   
                 </ul>
                 <ul className="relative px-1">
-                    <li className="relative" onClick={() => navigate("/testdata")}>
+                    <li className="relative" onClick={() => navigate(`${process.env.PUBLIC_URL}/testdata`)}>
                         <a className="flex items-center text-md font-semibold py-4 px-6 h-12 overflow-hidden text-th-light-text text-ellipsis whitespace-nowrap rounded hover:text-th-title-text hover:bg-th-navbar-hover transition duration-300 ease-in-out" href="#!" data-mdb-ripple="true" data-mdb-ripple-color="stone">
                             <span>Testing Data</span>
                         </a>
@@ -89,7 +89,7 @@ function NavBar({ onSignOut }) {
                 {categories.map(category => {
                     return (
                         <ul key={category} className="relative accordion-collapse collapse" id="collapseSidenavSecEx2" aria-labelledby="sidenavSecEx2" data-bs-parent="#sidenavSecExample">
-                            <li className="relative" onClick={() => navigate(`/tests/${category}`)}>
+                            <li className="relative" onClick={() => navigate(`${process.env.PUBLIC_URL}/tests/${category}`)}>
                                 <a className="flex items-center text-sm font-semibold mx-5 py-4 px-6 h-12 overflow-hidden text-th-light-text text-ellipsis whitespace-nowrap rounded hover:text-th-title-text hover:bg-th-navbar-hover transition duration-300 ease-in-out" href="#!" data-mdb-ripple="true" data-mdb-ripple-color="stone">
                                     <span>{capitalizeFirstLetter(category)}</span>
                                 </a>
@@ -103,7 +103,7 @@ function NavBar({ onSignOut }) {
             {!user.admin? (
                 
                 <ul className="relative px-1">
-                    <li onClick={() => navigate("/mygrades")} className="relative">
+                    <li onClick={() => navigate(`${process.env.PUBLIC_URL}/mygrades`)} className="relative">
                     <a className="flex items-center text-base font-semibold py-4 px-6 h-12 overflow-hidden text-th-light-text text-ellipsis whitespace-nowrap rounded hover:text-th-title-text hover:bg-th-navbar-hover transition duration-300 ease-in-out" href="#!" data-mdb-ripple="true" data-mdb-ripple-color="stone">
                         <span>Grades</span>
                     </a>

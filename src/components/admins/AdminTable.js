@@ -1,4 +1,4 @@
-import { useState, useContext, useRef, useEffect } from "react"
+import { useState, useContext } from "react"
 import { UsersContext } from "../../context/Users";
 import { UserContext } from "../../context/User";
 
@@ -60,8 +60,7 @@ function AdminTable() {
         usersContext.updateAdmin(selectedUser, setUpdateAdminResult);
     }
 
-    function handleDeleteAdmin() {
-        console.log(userToDelete);
+    function handleDeleteAdmin() { 
         if (userToDelete.replace(/\s+/g, '') === selectedUser.username.replace(/\s+/g, '')) {
             usersContext.deleteUser(selectedUser, setDeleteUserResult);
             setDeleteWarning(false);

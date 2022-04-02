@@ -6,7 +6,7 @@ import {useContext} from "react"
 import { QuizzesContext } from "../../context/Quizzes"
 
 
-function UplaodQuiz({ handleSubmitNewQuiz }) {
+function UplaodQuiz() {
     const quizzesContext = useContext(QuizzesContext);
 
     const urlCreator = window.URL || window.webkitURL;
@@ -29,8 +29,6 @@ function UplaodQuiz({ handleSubmitNewQuiz }) {
         }
         setTestFormData({...testFormData, [key]: e.target.id});
     }
-
-    console.log(testFormData)
 
     function loadQuizFile(e) {
         const selectedFile = e.target.files[0];
@@ -83,7 +81,6 @@ function UplaodQuiz({ handleSubmitNewQuiz }) {
     }
 
     function handleSubmitNewQuiz(testFormData, questions) {
-        console.log(testFormData)
         fetch("/quizzes", {
           method: "POST",
           headers: {"Content-Type": "application/json"},
@@ -91,7 +88,6 @@ function UplaodQuiz({ handleSubmitNewQuiz }) {
         })
         .then(resp => resp.json())
         .then(quiz => {
-        console.log(quiz);
           handleSubmitNewQuizQuestions(quiz.id, questions, quiz);
         })
       }

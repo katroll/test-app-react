@@ -11,16 +11,16 @@ function StudentRoutes({ setTakingQuiz, takingQuiz }) {
     return (
         <div className="pl-60">
             <Routes>
-                <Route path="/test/:name" 
+                <Route path={`${process.env.PUBLIC_URL}/test/:name`} 
                     element={<QuizTaker setTakingQuiz={setTakingQuiz} takingQuiz={takingQuiz} />}
                 />
-                <Route exact path="/tests/:category" 
+                <Route exact path={`${process.env.PUBLIC_URL}/tests/:category`} 
                     element={<TestList />}
                     />
-                <Route path="/mygrades" 
+                <Route path={`${process.env.PUBLIC_URL}/mygrades`}  
                     element={<StudentGradesContainer />}
                 />
-                <Route path="/" 
+                <Route path={`${process.env.PUBLIC_URL}/`} 
                     element={<StudentHome />}
                 />
             </Routes>

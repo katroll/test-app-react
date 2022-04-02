@@ -8,8 +8,6 @@ function QuizTable({ quizzes }) {
 
     const user = useContext(UserContext).user;
 
-    console.log(quizzes)
-
     return (
 
             <div className="">
@@ -49,7 +47,7 @@ function QuizTable({ quizzes }) {
                                             <tr key={quiz.id}>
                                                 <td className="px-6 py-4 border-b border-th-border">
                                                     <NavLink
-                                                        to={`/test/${quiz.name}`}
+                                                        to={`${process.env.PUBLIC_URL}/test/${quiz.name}`}
                                                         className="text-sm leading-5"
                                                         value={index}>
                                                             {quiz.name}

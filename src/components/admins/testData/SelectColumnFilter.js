@@ -6,7 +6,7 @@ function SelectColumnFilter({ column: { filterValue, setFilter, preFilteredRows,
     const options = useMemo(() => {
         const options = ["beginner", "intermediate", "advanced", "english", "misc"]
         return [...options.values()]
-    }, [preFilteredRows])
+    }, [])
 
 
     return (

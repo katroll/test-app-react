@@ -4,9 +4,8 @@ function CorrectAnswerFilter({ column: { filterValue, setFilter, preFilteredRows
     // Calculate the options for filtering
     // using the preFilteredRows
     const options = useMemo(() => {
-        const options = ["Yes", "No"]
         return [...options.values()]
-    }, [preFilteredRows])
+    }, [])
 
 
     // Render a multi-select box

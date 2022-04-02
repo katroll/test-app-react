@@ -4,8 +4,7 @@ import moment from 'moment';
 
 function DateRangeFilter({ column: {filterValue, setFilter, preFilteredRows, id } })  {
 
-    const dates = preFilteredRows.map((val) => moment(val.original[id]))
-    console.log(dates);
+    const dates = preFilteredRows.map((val) => moment(val.original[id]));
     const minDate = moment.min(dates).subtract(1,'day') // To include the date
     const maxDate = moment.max(dates).add(1, 'day')
 

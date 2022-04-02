@@ -30,7 +30,6 @@ export default function SignUp({ setLoggedIn }) {
 
   function handleSubmit(e) {
       e.preventDefault();
-      console.log(signUpData);
 
       fetch("/users", {
         method: "POST",
@@ -43,7 +42,7 @@ export default function SignUp({ setLoggedIn }) {
             setUser(user);
             setLoggedIn(true);
           })
-          .then(navigate("/"))
+          .then(navigate(`${process.env.PUBLIC_URL}/`))
         } else {
           resp.json().then(errorData => setErrors(errorData.error))
         }
@@ -126,8 +125,8 @@ export default function SignUp({ setLoggedIn }) {
               </div>
             ) : null }
             <div className='flex flex-col items-end'>
-              <NavLink to="/" className="text-th-light-text">Already have an account? Sign in.</NavLink>
-              <NavLink to="/" className="bengali text-th-light-text">বাংলা-মিডিয়াম</NavLink>
+              <NavLink to={`${process.env.PUBLIC_URL}/`} className="text-th-light-text">Already have an account? Sign in.</NavLink>
+              <NavLink to={`${process.env.PUBLIC_URL}/`} className="bengali text-th-light-text">বাংলা-মিডিয়াম</NavLink>
             </div>
             </div>
           </div>

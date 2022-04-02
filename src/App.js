@@ -23,7 +23,7 @@ function App() {
     fetch("/signout", {
       method: "DELETE",
     }).then(() => {
-      navigate("/")
+      navigate(`${process.env.PUBLIC_URL}/`)
       setLoggedIn(false)
     });
   }
@@ -62,7 +62,7 @@ function App() {
           </UserProvider>
 
         <div className='flex ml-60 pb-5 pt-2 mt-3 justify-center'>
-          <p className='text-th-title-text'>© {new Date().getFullYear()} by St. Paul's Computer Training Center. <a href="http://www.info@spctc.org" target="_blank">info@spctc.org</a></p>
+          <p className='text-th-title-text'>© {new Date().getFullYear()} by St. Paul's Computer Training Center. <a href="http://www.info@spctc.org" target="_blank" rel="noreferrer">info@spctc.org</a></p>
         </div>
       </div>
       

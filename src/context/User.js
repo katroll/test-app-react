@@ -18,7 +18,7 @@ function UserProvider({ children, setLoggedIn }) {
               resp.json().then(errors => console.log(errors))
             }
           });
-    }, [])
+    }, [setLoggedIn])
 
     function userContext(user, setValue) {
         return {

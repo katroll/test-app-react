@@ -1,8 +1,6 @@
 import * as Excel from "exceljs";
 import {saveAs} from "file-saver";
 
-import * as Base64 from "base64-arraybuffer"
-
 import { useContext, useState } from "react";
 import { QuizzesContext } from "../../context/Quizzes";
 
@@ -12,10 +10,12 @@ function ExportAll() {
     const [grades, setGrades] = useState([]);
     const exportQuizzes = [];
 
-    quizzes.map(quiz => {
-        quiz.questions.map(question => {
-            exportQuizzes.push({quiz_id: quiz.id, quiz_name: quiz.name, category: quiz.category, ...question})
+    quizzes.forEach(quiz => {
+        quiz.questions.forEach(question => {
+            exportQuizzes.push({quiz_id: quiz.id, quiz_name: quiz.name, category: quiz.category, ...question});
+            return;
         })
+        return;
     })
 
 
@@ -67,10 +67,8 @@ function ExportAll() {
             {header: 'Image', width: 25},
         ];
 
-        exportQuizzes.map((question, index) => {
-            console.log(question)
+        exportQuizzes.forEach((question, index) => {
             if(question.imageBase64) {
-                console.log(index)
                 let base64Image = question.imageBase64;
                 let image = workbook.addImage({
                     base64: base64Image,
