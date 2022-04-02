@@ -6,13 +6,13 @@ function UsersProvider({ children }) {
     const [users, setUsers] = useState([])
 
     useEffect(() => {
-        fetch("/users")
+        fetch("https://morning-scrubland-82075.herokuapp.com/users")
         .then(resp => resp.json())
         .then(users => setUsers(users))
     }, [])
 
     function updateAdmin(userToUpdate, setUpdateAdminResult) {
-        fetch(`users/${userToUpdate.id}`, {
+        fetch(`https://morning-scrubland-82075.herokuapp.com/users/${userToUpdate.id}`, {
             method: "PATCH",
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify({admin: !userToUpdate.admin})
@@ -38,7 +38,7 @@ function UsersProvider({ children }) {
     }
 
     function updatePassword(user, newPassword, setUpdatePasswordResult) {
-        fetch(`users/${user.id}`, {
+        fetch(`https://morning-scrubland-82075.herokuapp.com/users/${user.id}`, {
             method: "PATCH",
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify({password: newPassword})
@@ -63,7 +63,7 @@ function UsersProvider({ children }) {
     }
 
     function deleteUser(userToUpdate, setDeleteUserResult) {
-        fetch(`/users/${userToUpdate.id}`, {
+        fetch(`https://morning-scrubland-82075.herokuapp.com/users/${userToUpdate.id}`, {
             method: "DELETE",
         })
         .then((resp) => {

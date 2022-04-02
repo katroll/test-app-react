@@ -13,7 +13,7 @@ function QuizzesProvider({ children }) {
         const controller = new AbortController();
         const signal = controller.signal;
 
-        fetch("/quizzes", {
+        fetch("https://morning-scrubland-82075.herokuapp.com/quizzes", {
             signal: signal
         })
         .then(resp => resp.json())

@@ -31,7 +31,7 @@ export default function SignUp({ setLoggedIn }) {
   function handleSubmit(e) {
       e.preventDefault();
 
-      fetch("/users", {
+      fetch("https://morning-scrubland-82075.herokuapp.com/users", {
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify(signUpData)
@@ -125,8 +125,8 @@ export default function SignUp({ setLoggedIn }) {
               </div>
             ) : null }
             <div className='flex flex-col items-end'>
-              <NavLink to={`${process.env.PUBLIC_URL}/`} className="text-th-light-text">Already have an account? Sign in.</NavLink>
-              <NavLink to={`${process.env.PUBLIC_URL}/`} className="bengali text-th-light-text">বাংলা-মিডিয়াম</NavLink>
+              <NavLink to="/" className="text-th-light-text">Already have an account? Sign in.</NavLink>
+              <NavLink to="/" className="bengali text-th-light-text">বাংলা-মিডিয়াম</NavLink>
             </div>
             </div>
           </div>

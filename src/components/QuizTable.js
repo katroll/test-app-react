@@ -47,7 +47,7 @@ function QuizTable({ quizzes }) {
                                             <tr key={quiz.id}>
                                                 <td className="px-6 py-4 border-b border-th-border">
                                                     <NavLink
-                                                        to={`${process.env.PUBLIC_URL}/test/${quiz.name}`}
+                                                        to={`/test/${quiz.name}`}
                                                         className="text-sm leading-5"
                                                         value={index}>
                                                             {quiz.name}
