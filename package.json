@@ -11,6 +11,7 @@
     "base64-arraybuffer": "^1.0.2",
     "exceljs": "^4.3.0",
     "gsap": "^3.9.1",
+    "postcss-transition": "^1.1.2",
     "file-saver": "^2.0.5",
     "flatpickr": "^4.6.11",
     "moment": "^2.29.1",
@@ -49,6 +50,8 @@
     ]
   },
   "devDependencies": {
+    "autoprefixer": "^10.4.2",
+    "postcss": "^8.4.5",
     "tailwindcss": "^3.0.23"
   }
 }
