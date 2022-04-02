@@ -1,0 +1,73 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+.bengali {
+  font-family: AdorshoLipi, sans-serif
+}
+
+:root {
+  --primary: theme("colors.spctc.almond");
+  --secondary: theme("colors.navy.300");
+  --card-bg: theme("colors.navy.50");
+  --light-text: theme("colors.navy.50");
+  --button: theme("colors.navy.400");
+  --title-text: theme("colors.navy.700");
+  --table-header-bg: theme("colors.viridian.200");
+  --warning: theme("colors.red.100");
+  --correct: theme("colors.green.100");
+  --border: theme("colors.gray.100");
+  --transparent-bg: theme("colors.transparent.100");
+  --faded-highlight: theme("colors.viridian.100");
+}
+
+
+.spctc-login {
+  --primary: theme("colors.spctc.almond");
+  --secondary: theme("colors.spctc.dark-blue");
+  --card-bg: theme("colors.navy.50");
+  --light-text: theme("colors.navy.50");
+  --button: theme("colors.spctc.dark-green");
+  --light-blue-bg: theme("colors.spctc.light-blue");
+  --green-button-hover: theme("colors.spctc.dark-green-hover");
+}
+
+.spctc-admin {
+  --primary: theme("colors.spctc.almond");
+  --secondary: theme("colors.spctc.dark-green");
+  --card-bg: theme("colors.navy.50");
+  --light-text: theme("colors.navy.50");
+  --button: theme("colors.spctc.dark-green");
+  --green-button-hover: theme("colors.spctc.dark-green-hover");
+  --navbar-hover: theme("colors.spctc.yellow");
+  --title-text: theme("colors.spctc.dark-blue");
+  --table-header-bg: theme("colors.spctc.dark-blue");
+  --warning: theme("colors.red.100");
+  --correct: theme("colors.green.100");
+  --border: theme("colors.gray.100");
+  --transparent-bg: theme("colors.transparent.100");
+  --faded-highlight: theme("colors.viridian.100");
+  --light-blue-bg: theme("colors.spctc.light-blue");
+}
+
+.spctc-student {
+  --primary: theme("colors.spctc.almond");
+  --secondary: theme("colors.spctc.dark-blue");
+  --card-bg: theme("colors.navy.50");
+  --light-text: theme("colors.navy.50");
+  --button: theme("colors.spctc.dark-green");
+  --title-text: theme("colors.spctc.dark-blue");
+  --table-header-bg: theme("colors.spctc.dark-green");
+  --warning: theme("colors.red.100");
+  --correct: theme("colors.green.100");
+  --border: theme("colors.gray.100");
+  --transparent-bg: theme("colors.transparent.100");
+  --faded-highlight: theme("colors.viridian.100");
+  --navbar-hover: theme("colors.spctc.yellow");
+  --light-blue-bg: theme("colors.spctc.light-blue");
+  --green-button-hover: theme("colors.spctc.dark-green-hover");
+}
+
+
+
