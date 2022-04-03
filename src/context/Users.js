@@ -79,7 +79,7 @@ function UsersProvider({ children }) {
               setDeleteUserResult(false);
             }
         });
-    }
+    } 
 
     function usersContext(users, setValue) {
         return {

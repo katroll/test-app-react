@@ -19,6 +19,7 @@ function UplaodQuiz() {
     const [preview, setPreview] = useState(false);
     const [questions, setQuestions] = useState([]);
     const [error, setError] = useState([]);
+    const [success, setSuccess] = useState("");
     const categories = ["Beginner", "Intermediate", "Advanced", "English", "Misc"];
 
     function handleFormChange(e) {
@@ -39,7 +40,10 @@ function UplaodQuiz() {
         reader.onload = () => {
             const buffer = reader.result;
             wb.xlsx.load(buffer).then(workbook => {
-                workbook.eachSheet((sheet, id) => {
+                workbook.eachSheet(sheet => {
+                    if(sheet.id !== 1) {
+                        return;
+                    }
                     const quizQuestions = [];
                     sheet.eachRow((row, rowIndex) => {
                         if(rowIndex === 1 ) return;                        
@@ -53,13 +57,16 @@ function UplaodQuiz() {
                         quizQuestions.push(questionObj);
                     })
 
+                    console.log("questions: ",quizQuestions);
                     const images = sheet.getImages();
                     images.forEach(image => {
                         const row = image.range.tl.row;
                         const img = workbook.model.media.find(m => m.index === image.imageId);
                         const imgBase64 = Base64.encode(img.buffer);
-                        quizQuestions[row - 1].imageBase64 = imgBase64;
+                        console.log("row: ", row)
+                        quizQuestions[Math.floor(row) - 1].imageBase64 = imgBase64;
                     })
+                    console.log("questions: ", quizQuestions);
                     setQuestions(quizQuestions);
                 })
             })

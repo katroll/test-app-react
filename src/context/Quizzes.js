@@ -43,10 +43,31 @@ function QuizzesProvider({ children }) {
         return imageUrl;
     }
 
+    function deleteQuiz(quizToDelete, setDeleteQuizResult) {
+        console.log("quiz to delte: ", quizToDelete.id)
+        fetch(`https://morning-scrubland-82075.herokuapp.com/quizzes/${quizToDelete.id}`, {
+            method: "DELETE",
+        })
+        .then((resp) => {
+            if (resp.ok) {
+              resp.json().then(() => {
+                const updatedQuizzes = quizzes.filter(quiz => quiz.id !== quizToDelete.id)
+                setQuizzes(updatedQuizzes);
+                setDeleteQuizResult(true);
+
+              });
+            } else {
+              resp.json().then(errors => console.log(errors))
+              setDeleteQuizResult(false);
+            }
+        });
+    }
+
     function quizzesContext(quizzes, setValue) {
         return {
             quizzes: quizzes,
-            setValue: setValue
+            setValue: setValue,
+            deleteQuiz: deleteQuiz,
         }
     }
     
