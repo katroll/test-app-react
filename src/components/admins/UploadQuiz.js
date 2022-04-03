@@ -81,7 +81,7 @@ function UplaodQuiz() {
     }
 
     function handleSubmitNewQuiz(testFormData, questions) {
-        fetch("/quizzes", {
+        fetch("https://morning-scrubland-82075.herokuapp.com/quizzes", {
           method: "POST",
           headers: {"Content-Type": "application/json"},
           body: JSON.stringify({name: testFormData.name, category: testFormData.category, kind: testFormData.kind})
@@ -94,7 +94,7 @@ function UplaodQuiz() {
     
       function handleSubmitNewQuizQuestions(quizId, questions, quiz) {
         const allFetches = questions.map(question => {
-          return fetch("/questions", {
+          return fetch("https://morning-scrubland-82075.herokuapp.com/questions", {
             method: "POST",
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify({
@@ -176,7 +176,7 @@ function UplaodQuiz() {
                                         onChange={handleFormChange} 
                                         className=" bg-stone-100 px-2 mt-1 mr-2"
                                     />
-                                    <label>Test (students cannot view which answers are correct / incorrect)</label>  
+                                    <label>Test (students cannot view which answers are correct / incorrect with their grade)</label>  
                                 </div>
                                 <div className="flex flex-row rounded-md pt-2 pl-3">
                                     <input 
@@ -186,7 +186,7 @@ function UplaodQuiz() {
                                         onChange={handleFormChange} 
                                         className=" bg-stone-100 px-2 mt-1 mr-2"
                                     />
-                                    <label>Quiz (students can view which answers are correct / incorrect)</label>  
+                                    <label>Quiz (students can view which answers are correct / incorrect with their grade)</label>  
                                 </div>
                             </div>
                         </div>

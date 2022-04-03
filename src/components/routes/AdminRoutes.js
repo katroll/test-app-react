@@ -16,22 +16,22 @@ function AdminRoutes() {
         <div className="pl-60 w-full">
             <UsersProvider>
                 <Routes>
-                    <Route path={`${process.env.PUBLIC_URL}/uploadquiz`}
+                    <Route path={`/uploadquiz`}
                     element={<UplaodQuiz />}
                     />
-                    <Route path={`${process.env.PUBLIC_URL}/testdata`}
+                    <Route path={`/testdata`}
                     element={<TestDataContainer/>}
                     />
-                    <Route exact path={`${process.env.PUBLIC_URL}/test/:name`} 
+                    <Route exact path={`/test/:name`} 
                     element={<QuizViewer />}
                     />
-                    <Route path={`${process.env.PUBLIC_URL}/tests/:category`}
+                    <Route path={`/tests/:category`}
                     element={<TestList />}
                     />
-                    <Route path={`${process.env.PUBLIC_URL}/students`}
+                    <Route path={`/students`}
                     element={<UserContainer />}
                     />
-                    <Route path={`${process.env.PUBLIC_URL}/`}
+                    <Route path={`/`}
                     element={<AdminHome />}
                     />
                 </Routes>

@@ -16,7 +16,7 @@ function QuizTaker({ setTakingQuiz, takingQuiz }) {
     const quiz = quizzes.find(quiz => quiz.name === name);
 
     function handleSubmitScore(results, score) {
-        fetch("/grades", {
+        fetch("https://morning-scrubland-82075.herokuapp.com/grades", {
             method: "POST",
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify({user_id: userContext.user.id, quiz_id: quiz.id, results: results, score: score, start_time: startTime})

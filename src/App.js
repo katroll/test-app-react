@@ -23,7 +23,7 @@ function App() {
     fetch("/signout", {
       method: "DELETE",
     }).then(() => {
-      navigate(`${process.env.PUBLIC_URL}/`)
+      navigate(`/`)
       setLoggedIn(false)
     });
   }

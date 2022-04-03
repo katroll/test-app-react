@@ -17,11 +17,11 @@ function SignInRoutes({ setLoggedIn }) {
               alt="Avatar"/>
             <Routes>
               <Route 
-                  path={`${process.env.PUBLIC_URL}/signup`}
+                  path={`/signup`}
                   element={<SignUp setLoggedIn={setLoggedIn} />}
                 />
               
-              <Route exact path={`${process.env.PUBLIC_URL}/`}
+              <Route exact path={`/`}
                 element={<SignIn setLoggedIn={setLoggedIn}/>}
               />
             </Routes>

@@ -1,11 +1,5 @@
-import { useMemo } from "react"
 
 function CorrectAnswerFilter({ column: { filterValue, setFilter, preFilteredRows, id }, }) {
-    // Calculate the options for filtering
-    // using the preFilteredRows
-    const options = useMemo(() => {
-        return [...options.values()]
-    }, [])
 
 
     // Render a multi-select box

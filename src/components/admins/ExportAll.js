@@ -20,11 +20,11 @@ function ExportAll() {
 
 
     function handleExportAll() {
-        fetch("/exportusers")
+        fetch("https://morning-scrubland-82075.herokuapp.com/exportusers")
             .then(resp => resp.json())
             .then(users => setUsers(users))
             .catch(error => console.log(error))
-        fetch("/exportgrades")
+        fetch("https://morning-scrubland-82075.herokuapp.com/exportgrades")
             .then(resp => resp.json())
             .then(grades => setGrades(grades))
             .catch(error => console.log(error))
@@ -64,19 +64,7 @@ function ExportAll() {
             {header: 'Bengali', key: 'bengali', width: 25},
             {header: 'Choices', key: 'choices', width: 25},
             {header: 'Answer', key: 'answer', width: 25},
-            {header: 'Image', width: 25},
         ];
-
-        exportQuizzes.forEach((question, index) => {
-            if(question.imageBase64) {
-                let base64Image = question.imageBase64;
-                let image = workbook.addImage({
-                    base64: base64Image,
-                    extension: 'png',
-                    });
-                testsWorksheet.addImage(image, `J${index}:J${index}`);
-            }
-        })
       
         usersWorksheet.addRows(users);
         gradesWorksheet.addRows(grades);

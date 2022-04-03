@@ -6,7 +6,7 @@ function AdminHome() {
     const [grades, setGrades] = useState([]);
 
     useEffect(() => {
-        fetch("/grades")
+        fetch("https://morning-scrubland-82075.herokuapp.com/grades")
         .then(resp => resp.json())
         .then(grades => {
             const gradesByDate = grades.reverse();

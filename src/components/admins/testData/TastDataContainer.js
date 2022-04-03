@@ -21,7 +21,7 @@ function TestDataContainer() {
         const controller = new AbortController();
         const signal = controller.signal;
 
-        fetch("/grades", {
+        fetch("https://morning-scrubland-82075.herokuapp.com/grades", {
             signal: signal
         })
         .then(resp => resp.json())
