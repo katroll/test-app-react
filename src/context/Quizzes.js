@@ -44,7 +44,6 @@ function QuizzesProvider({ children }) {
     }
 
     function deleteQuiz(quizToDelete, setDeleteQuizResult) {
-        console.log("quiz to delte: ", quizToDelete.id)
         fetch(`https://morning-scrubland-82075.herokuapp.com/quizzes/${quizToDelete.id}`, {
             method: "DELETE",
         })
