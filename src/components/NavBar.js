@@ -9,6 +9,7 @@ import { UserContext } from "../context/User"
 function NavBar({ onSignOut }) {
     const navigate = useNavigate();
     const user = useContext(UserContext).user;
+    const setUser = useContext(UserContext).setValue;
 
     
     const categories = ["beginner", "intermediate", "advanced", "english", "misc"]
@@ -29,7 +30,7 @@ function NavBar({ onSignOut }) {
                     <div className="grow mt-3">
                         <p className="text-xl font-semibold text-th-light-text">{`${user.first_name} ${user.last_name}`}</p>
                     </div>
-                    <button onClick={onSignOut} className="">
+                    <button onClick={() => onSignOut(setUser)} className="">
                         <a className="flex items-center bg-th-navbar-hover text-md font-semibold mt-2 px-10 h-12 overflow-hidden text-th-title-text text-ellipsis whitespace-nowrap rounded hover:text-th-title-text transition duration-300 ease-in-out" href="#!" data-mdb-ripple="true" data-mdb-ripple-color="stone">
                             <span>Logout</span>
                         </a>

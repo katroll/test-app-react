@@ -8,6 +8,10 @@ function UserProvider({ children, setLoggedIn }) {
     const [user, setUser] = useState({});
 
     useEffect(() => {
+        findUser();
+    }, [])
+
+    function findUser() {
         fetch("https://morning-scrubland-82075.herokuapp.com/me", {
             headers: {
                 user_id: localStorage.getItem("userId"),
@@ -22,17 +26,17 @@ function UserProvider({ children, setLoggedIn }) {
               resp.json().then(errors => console.log(errors))
             }
           });
-    }, [])
+    }
 
     function userContext(user, setValue) {
         return {
             user: user,
-            setValue: setValue
+            setValue: setValue,
+            findUser: findUser
         }
     }
     
     const context = userContext(user, setUser);
-
 
     return (
         <UserContext.Provider value={context}>

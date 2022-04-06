@@ -1,9 +1,10 @@
 
 function StudentGrades({ user, height }) {
+    console.log(user);
 
     const sortedGrades = user.grades.sort((a,b) => (b.updated_at > a.updated_at) ? 1 : ((a.updated_at > b.updated_at) ? -1 : 0));
 
-
+    
     return (
         <div className="mt-2 m-10">
                 <div className={`flex flex-col mt-8 ${height}`}>

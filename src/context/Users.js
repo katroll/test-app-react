@@ -1,12 +1,9 @@
 import React, { useEffect, createContext, useState } from "react";
 
-import { useContext } from "react";
-import { UserContext } from "./User";
 
 const UsersContext = createContext();
 
 function UsersProvider({ children }) {
-    const currUser = useContext(UserContext).user;
     const [users, setUsers] = useState([])
 
     useEffect(() => {

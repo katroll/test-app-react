@@ -10,11 +10,7 @@ import CorrectAnswerFilter from "./CorrectAnswerFilter";
 import FilteredDataTable from "./FilteredDataTable";
 
 
-
-
-
 function TestDataContainer() {
-
     const [grades, setGrades] = useState([]);
 
     useEffect(() => {
@@ -35,7 +31,6 @@ function TestDataContainer() {
         };
     }, [])
     
-    //const columns = ["Student Name", "Username", "Student ID", "Test Name", "Test Score", "Question Number", "Correct", "Day/Time Completed"]
 
     const columns = useMemo(
         () => [
@@ -165,13 +160,13 @@ function TestDataContainer() {
 
     return (
         <div className="pt-5 flex justify-center">
-        <div className="flex flex-col items-center">
-            <p className="font-bold text-4xl text-th-title-text">Testing Data</p>
-            <div className="w-full overflow-x-hidden overflow-x-scroll">
-                <FilteredDataTable data={data} columns={columns} handleExcelExport={handleExcelExport}/>
+            <div className="flex flex-col items-center">
+                <p className="font-bold text-4xl text-th-title-text">Testing Data</p>
+                <div className="w-full overflow-x-hidden overflow-x-scroll">
+                    <FilteredDataTable data={data} columns={columns} handleExcelExport={handleExcelExport}/>
+                </div>
             </div>
         </div>
-    </div>
     )
 }
 

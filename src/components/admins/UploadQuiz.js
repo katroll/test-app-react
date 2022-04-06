@@ -8,6 +8,7 @@ import { QuizzesContext } from "../../context/Quizzes"
 
 function UplaodQuiz() {
     const quizzesContext = useContext(QuizzesContext);
+    const [uploadTestResult, setUploadTestResult] = useState("");
 
     const urlCreator = window.URL || window.webkitURL;
 
@@ -121,8 +122,18 @@ function UplaodQuiz() {
           })
     
           quizzesContext.setValue([...quizzesContext.quizzes, quiz]);
-        });
+        })
+        .then(data => setUploadSucces(true));
       }
+
+      function setUploadSucces(result) {
+        if(result) {
+            setUploadTestResult(`Successfully uploaded!`);
+        } else {
+            setUploadTestResult(`Failed to upload.`);
+        }
+        setTimeout(() => setUploadTestResult(""), 2000);
+    }
 
       function createImgUrl(question) {
         const imageArrayBuffer = Base64.decode(question.imageBase64);
@@ -205,6 +216,13 @@ function UplaodQuiz() {
                             </div>
                         </div>
                     </form>
+                    {uploadTestResult ? (
+                        <div className="w-full flex justify-center mb-1">
+                            <div className="text-sm bg-th-border text-th-light-text w-1/2 text-center rounded">
+                                {uploadTestResult}
+                            </div>
+                        </div>
+                    ) : null }
                 </div>
 
                 {error ? (

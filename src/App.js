@@ -19,12 +19,14 @@ function App() {
   const [takingQuiz, setTakingQuiz] = useState(false);
 
 
-  function handleSignOut() {
+  function handleSignOut(setUser) {
     fetch("/signout", {
       method: "DELETE",
     }).then(() => {
-      navigate(`/`)
-      setLoggedIn(false)
+      navigate(`/`);
+      setLoggedIn(false);
+      setUser({});
+      localStorage.clear();
     });
   }
 

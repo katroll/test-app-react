@@ -13,7 +13,7 @@ export default function SignIn({ setLoggedIn }) {
         password: ""
     });
     const [error, setError] = useState("");
-    const setUser = useContext(UserContext).setValue;
+    const findUser = useContext(UserContext).findUser;
 
     function handleSignInChange(e) {
         setSignIndata({
@@ -32,9 +32,9 @@ export default function SignIn({ setLoggedIn }) {
         .then(resp => {
             if(resp.ok){
                 resp.json().then(user => {
-                  setUser(user.user);
-                  setLoggedIn(true);
                   localStorage.setItem("userId", user.session);
+                  findUser();
+                  setLoggedIn(true);
                 })
             }
             else {
