@@ -1,8 +1,12 @@
 import React, { useEffect, createContext, useState } from "react";
 
+import { useContext } from "react";
+import { UserContext } from "./User";
+
 const UsersContext = createContext();
 
 function UsersProvider({ children }) {
+    const currUser = useContext(UserContext).user;
     const [users, setUsers] = useState([])
 
     useEffect(() => {
@@ -14,7 +18,10 @@ function UsersProvider({ children }) {
     function updateAdmin(userToUpdate, setUpdateAdminResult) {
         fetch(`https://morning-scrubland-82075.herokuapp.com/users/${userToUpdate.id}`, {
             method: "PATCH",
-            headers: {"Content-Type": "application/json"},
+            headers: {
+              "Content-Type": "application/json", 
+              user_id: localStorage.getItem("userId")
+            },
             body: JSON.stringify({admin: !userToUpdate.admin})
         })
         .then((resp) => {
@@ -40,7 +47,10 @@ function UsersProvider({ children }) {
     function updatePassword(user, newPassword, setUpdatePasswordResult) {
         fetch(`https://morning-scrubland-82075.herokuapp.com/users/${user.id}`, {
             method: "PATCH",
-            headers: {"Content-Type": "application/json"},
+            headers: {
+              "Content-Type": "application/json",
+              user_id: localStorage.getItem("userId")
+            },
             body: JSON.stringify({password: newPassword})
         })
         .then((resp) => {
@@ -65,6 +75,9 @@ function UsersProvider({ children }) {
     function deleteUser(userToUpdate, setDeleteUserResult) {
         fetch(`https://morning-scrubland-82075.herokuapp.com/users/${userToUpdate.id}`, {
             method: "DELETE",
+            headers: {
+              user_id: localStorage.getItem("userId")
+            },
         })
         .then((resp) => {
             if (resp.ok) {
