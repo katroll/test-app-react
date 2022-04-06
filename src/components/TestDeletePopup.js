@@ -34,9 +34,9 @@ function TestDeletePopup({ quizToDelete, setDeleteTestWarning }) {
                     <div className="flex space-x-5 mt-2">
                         <button  
                             onClick={handleDeleteQuiz}
-                            className="p-1 bg-th-button text-th-light-text hover:bg-th-green-button-hover rounded" 
+                            className="p-1 bg-th-warning text-th-light-text hover:bg-th-warning rounded" 
                         >
-                            Confirm
+                            Delete {quizToDelete.name} 
                         </button>
                         <button 
                             onClick={() => setDeleteTestWarning(false)}

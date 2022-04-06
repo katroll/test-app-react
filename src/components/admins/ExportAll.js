@@ -88,7 +88,7 @@ function ExportAll() {
     return (
         <div>
             <button 
-                className="p-1 rounded bg-th-button text-th-light-text hover:bg-th-green-button-hover"
+                className="p-2 rounded text-white bg-th-button hover:bg-th-green-button-hover text-th-light-text"
                 onClick={handleExportAll}>
                     Export Database
             </button>

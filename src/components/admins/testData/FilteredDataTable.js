@@ -1,6 +1,8 @@
 import { useTable, useFilters, useGlobalFilter, useSortBy } from "react-table";
 import { useMemo } from "react";
 
+import ExportAll from "../ExportAll"
+
 
 function FilteredDataTable({ data, columns, handleExcelExport }) {
 
@@ -42,7 +44,8 @@ function FilteredDataTable({ data, columns, handleExcelExport }) {
   
     return (
       <div className="flex flex-col">
-        <div className="flex w-full justify-end">
+        <div className="flex w-full justify-end space-x-3">
+            <ExportAll />
             <button
                 className="p-2 rounded text-white bg-th-button hover:bg-th-green-button-hover text-th-light-text"
                 onClick={() => handleExcelExport(rows)}>
