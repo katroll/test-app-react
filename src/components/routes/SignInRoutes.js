@@ -13,7 +13,7 @@ function SignInRoutes({ setLoggedIn }) {
           <div className='flex flex-col items-center w-screen'>
             <img 
               src={banner}
-              className="w-100 mb-5 border-4 border-th-light-blue-bg" 
+              className="w-[80vw] mb-5 border-4 border-th-light-blue-bg" 
               alt="Avatar"/>
             <Routes>
               <Route 

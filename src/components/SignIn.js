@@ -32,8 +32,9 @@ export default function SignIn({ setLoggedIn }) {
         .then(resp => {
             if(resp.ok){
                 resp.json().then(user => {
-                  setUser(user);
+                  setUser(user.user);
                   setLoggedIn(true);
+                  localStorage.setItem("userId", user.session);
                 })
             }
             else {

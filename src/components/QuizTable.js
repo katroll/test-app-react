@@ -3,69 +3,21 @@ import { NavLink } from "react-router-dom"
 import { useContext, useState } from "react"
 import { UserContext } from "../context/User"
 import { QuizzesContext } from "../context/Quizzes"
+import TestDeletePopup from "./TestDeletePopup";
 
 
 
 function QuizTable({ quizzes }) {
-    const quizzesContext = useContext(QuizzesContext);
     const user = useContext(UserContext).user;
     const [deleteTestWarning, setDeleteTestWarning] = useState(false);
     const [quizToDelete, setQuizToDelete] = useState({});
-    const [deleteResult, setDeleteResult] = useState("");
-
-    function handleDeleteQuiz() {
-        quizzesContext.deleteQuiz(quizToDelete, setDeleteQuizResult);
-
-    }
-
-    function setDeleteQuizResult(result) {
-        if(result) {
-            setDeleteResult("Quiz Deleted!");
-        } else {
-            setDeleteResult("Failed to delete quiz.");
-        }
-        setTimeout(() => {
-            setDeleteResult("");
-            if(result) {
-                setDeleteTestWarning(false);
-            }
-        }, 2000);
-    }
-    
 
     return (
 
-            <div>
+            <div className="flex flex-col items-center">
 
                 {deleteTestWarning ? (
-                    <div className="flex justify-center items-center">
-                        <div className="absolute flex w-full h-full pl-10 bg-th-transparent-bg p-60 pt-72 pl-72">
-                            <div className="flex flex-col space-y-5 h-full w-full items-center justify-center bg-th-card-bg rounded">
-                                <p>Are you sure you would like to delete {quizToDelete.name}? All data and associated grades will be deleted.</p>
-                                <div className="flex space-x-5">
-                                    <button 
-                                        onClick={handleDeleteQuiz}
-                                        className="p-1 bg-th-button text-th-light-text hover:bg-th-green-button-hover rounded" 
-                                    >
-                                        Confirm
-                                    </button>
-                                    <button 
-                                        onClick={() => setDeleteTestWarning(false)}
-                                        className="p-1 bg-th-button text-th-light-text hover:bg-th-green-button-hover rounded" 
-                                    >
-                                        Cancel
-                                    </button>
-                                </div>
-                                {deleteResult ? (
-                                    <div className="w-full flex justify-center my-2">
-                                        <div className="text-sm bg-th-border text-th-light-text w-1/2 text-center rounded">
-                                            {deleteResult}
-                                        </div>
-                                    </div>
-                                ) : null}
-                            </div>
-                        </div>
-                    </div>
+                        <TestDeletePopup  quizToDelete={quizToDelete} setDeleteTestWarning={setDeleteTestWarning} />
                 ) : null }
 
                 <div className="flex flex-col mt-8 max-h-[80vh]">

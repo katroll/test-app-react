@@ -15,7 +15,7 @@ function TestList() {
     }
 
     return (
-        <div className="flex flex-col pt-10 pl-12 items-center">
+        <div className="flex flex-col w-full pt-10 pl-12 items-center">
             <h1 className="text-4xl text-th-title-text font-bold">{capitalizeFirstLetter(category)} Tests</h1>
 
             <QuizTable quizzes={filteredQuizzes} />

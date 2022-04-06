@@ -8,7 +8,11 @@ function UserProvider({ children, setLoggedIn }) {
     const [user, setUser] = useState({});
 
     useEffect(() => {
-        fetch("https://morning-scrubland-82075.herokuapp.com/me").then((resp) => {
+        fetch("https://morning-scrubland-82075.herokuapp.com/me", {
+            headers: {
+                user_id: localStorage.getItem("userId"),
+              },
+        }).then((resp) => {
             if (resp.ok) {
               resp.json().then((user) => {
                 setUser(user);
