@@ -18,6 +18,15 @@ function ExportAll() {
         return;
     })
 
+    const exportGrades = grades.map(grade => {
+        const test = quizzes.find(quiz => quiz.id === grade.quiz_id).name;
+        const student = users.find(user => user.id === grade.user_id);
+        const studentFullName = `${student.first_name} ${student.last_name}`
+        return {...grade, testName: test, studentName: studentFullName}
+    })
+
+    console.log(exportGrades);
+
 
     function handleExportAll() {
         fetch("https://morning-scrubland-82075.herokuapp.com/exportusers")
@@ -47,7 +56,9 @@ function ExportAll() {
 
         gradesWorksheet.columns = [
             {header: 'User ID', key: 'user_id', width: 15},
-            {header: 'Test ID', key: 'quiz_id', width: 15}, 
+            {header: 'Test ID', key: 'quiz_id', width: 15},
+            {header: 'User', key: 'studentName', width: 15}, 
+            {header: 'Test', key: 'testName', width: 15},
             {header: 'Score', key: 'score', width: 15},
             {header: 'Results', key: 'results', width: 15},
             {header: 'Day/Time Started', key: 'start_time', width: 25},
@@ -67,7 +78,7 @@ function ExportAll() {
         ];
       
         usersWorksheet.addRows(users);
-        gradesWorksheet.addRows(grades);
+        gradesWorksheet.addRows(exportGrades);
         testsWorksheet.addRows(exportQuizzes);
     
         const buffer = await workbook.xlsx.writeBuffer();

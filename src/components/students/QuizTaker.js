@@ -51,7 +51,7 @@ function QuizTaker({ setTakingQuiz, takingQuiz }) {
             {takingQuiz ? (
                 <div className="flex flex-col w-screen items-center">
                     
-                    <Questions questions={quiz.questions} onSubmitScore={handleSubmitScore}/> 
+                    <Questions questions={quiz.questions} onSubmitScore={handleSubmitScore} setTakingQuiz={setTakingQuiz}/> 
                     <button 
                         type="button" 
                         className="w-1/3 mt-1 mb-5 py-2 text-th-light-text bg-th-button rounded hover:bg-th-green-button-hover text-md px-1 text-center"

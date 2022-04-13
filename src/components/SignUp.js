@@ -31,6 +31,10 @@ export default function SignUp({ setLoggedIn }) {
   function handleSubmit(e) {
       e.preventDefault();
 
+      if(!signUpData.spctc_pin_code) {
+        setErrors([...errors, "Must enter valid SPCTC Pin Code"])
+      }
+
       fetch("https://morning-scrubland-82075.herokuapp.com/users", {
         method: "POST",
         headers: {"Content-Type": "application/json"},
@@ -44,10 +48,12 @@ export default function SignUp({ setLoggedIn }) {
           })
           .then(navigate(`${process.env.PUBLIC_URL}/`))
         } else {
-          resp.json().then(errorData => setErrors(errorData.error))
+          resp.json().then(errorData => setErrors([...errorData.error]))
         }
       })
   }
+
+  console.log(errors);
 
 
   return (

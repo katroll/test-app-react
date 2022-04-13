@@ -1,7 +1,7 @@
 import { useState } from "react";
 import QuizViewer from "../QuizViewer";
 
-function Questions( { questions, onSubmitScore }) {
+function Questions( { questions, onSubmitScore, setTakingQuiz }) {
     let [questionNumber, setQuestionNumber] = useState(0);
     let [score, setScore] = useState(0);
     const [results, setResults] = useState((new Array(questions.length)).fill(-1));
@@ -54,11 +54,17 @@ function Questions( { questions, onSubmitScore }) {
         <div className="p-10 w-3/4">
             
             {complete ? (
-                <div>
-                    <div className="flex flex-col items-center bg-th-secondary py-3 rounded">
+                <div className="flex flex-col w-full items-center">
+                    <div className="flex flex-col items-center bg-th-secondary py-3 rounded w-full">
                         <p className="text-2xl text-th-light-text">You got {score} out of {questionNumber + 1} correct!</p>
                         <p className="text-3xl font-bold text-th-light-text">{Math.floor(score / (questionNumber + 1) * 100 )} %</p>
                      </div>
+                     <button 
+                        type="button" 
+                        className="w-1/3 mb-5 py-2 mt-2 text-th-light-text bg-th-button rounded hover:bg-th-green-button-hover text-md px-1 text-center"
+                        onClick={() => setTakingQuiz(false)}>
+                            Exit Test 
+                    </button>
                      <QuizViewer />
                 </div>
                
