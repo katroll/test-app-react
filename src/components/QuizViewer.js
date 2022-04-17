@@ -14,6 +14,8 @@ function QuizViewer() {
 
     const [answers, setAnswers] = useState([]);
 
+    console.log(answers);
+
     useEffect(() => {
         if(!user.admin) {
             if(user.grades.length > 0) {
@@ -44,7 +46,7 @@ function QuizViewer() {
             <ul className="flex flex-col justify-start mt-5 w-full">
                 {quiz.questions.map((question, i) => {
                     return (
-                        <li key={question.question} className="mb-3">
+                        <li key={`${question.question}-${question.number}`} className="mb-3">
                             <div className="flex flex-col w-full p-2 bg-th-card-bg items-center border-2 rounded border-th-light-blue-bg">
                                 {question.imageUrl ? (
                                     <img
@@ -74,7 +76,7 @@ function QuizViewer() {
                                         {question.choices.map((choice, index) => {
                                             return (
                                                 <div key={choice} className="">
-                                                    <input type="radio" id={choice} name={question.question} checked={answers[i] === index ? true : false} readOnly></input>
+                                                    <input type="radio" id={choice} name={`${question.question}-${question.number}`} checked={answers[i] === index ? true : false} readOnly></input>
                                                     <label className="pl-1 text-stone-800">{choice}</label>
                                                 </div>
                                             )

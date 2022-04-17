@@ -22,6 +22,8 @@ function UplaodQuiz() {
     const [error, setError] = useState([]);
     const categories = ["Beginner", "Intermediate", "Advanced", "English", "Misc"];
 
+    console.log(questions);
+
     function handleFormChange(e) {
         const key = e.target.name;
         if(key === "name") {
@@ -162,7 +164,7 @@ function UplaodQuiz() {
                             </div>
                         </div>
                         <div className="flex">
-                            <label className="p-2 text-stone-800">Choose Test Category: </label>
+                            <label className="p-2 ">Choose Test Category: </label>
                             <div className="flex flex-col space-x-1">
                                 {categories.map(category => {
                                     return (
@@ -180,7 +182,7 @@ function UplaodQuiz() {
                             </div>
                         </div>
                         <div className="flex">
-                            <label className="p-2 text-stone-800">This is a... </label>
+                            <label className="p-2 ">This is a... </label>
                             <div className="flex flex-col space-x-1">
                                 <div className="flex flex-row rounded-md pt-2 pl-3">
                                     <input 
@@ -205,7 +207,7 @@ function UplaodQuiz() {
                             </div>
                         </div>
                         <div htmlFor="upload" className="flex flex-row space-x-1 items-center mt-2">
-                            <label className="p-2 text-stone-800">Upload Test: </label>
+                            <label className="p-2 ">Upload Test: </label>
                             <div>
                                 <input 
                                     type="file" 
@@ -256,7 +258,7 @@ function UplaodQuiz() {
                 <ul className="flex flex-col justify-start mt-5 w-full">
                     {questions.map(question => {
                         return (
-                            <li key={question.question} className="mb-3">
+                            <li key={`${question.question}-${question.number}`} className="mb-3">
                                 <div className="flex flex-col w-full p-2 bg-th-card-bg items-center border rounded border-yellow">
                                 {question.imageBase64 ? (
                                         <img
@@ -267,18 +269,18 @@ function UplaodQuiz() {
                                     ) : null }
                                     <div className="flex flex-col justify-start pb-2 pt-2">
                                         <div className="flex flex-row">
-                                            <p className="font-bold mr-3 text-stone-800">{`${question.number}.`}</p>
+                                            <p className="font-bold mr-3 ">{`${question.number}.`}</p>
                                             <div className="felx flex-col mb-2">
-                                                <p className="text-stone-800">{question.question}</p>
-                                                <p className="text-stone-800 mt-2">{question.bengali}</p>
+                                                <p className="">{question.question}</p>
+                                                <p className="mt-2">{question.bengali}</p>
                                             </div>  
                                         </div>
                                             <div className="flex flex-col pl-10">
                                                 {question.choices.map((choice, index) => {
                                                     return (
                                                         <div key={`${choice}-${index}`} className="">
-                                                            <input type="radio" id={choice} name={question.question} checked={question.answer === index ? true : false} readOnly></input>
-                                                            <label className="pl-1 text-stone-800">{choice}</label>
+                                                            <input type="radio" id={choice} name={`${question.question}-${question.number}`} checked={question.answer === index ? true : false} readOnly></input>
+                                                            <label className="pl-1">{choice}</label>
                                                         </div>
                                                     )
                                                 })}

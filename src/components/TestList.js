@@ -10,6 +10,10 @@ function TestList() {
 
     const filteredQuizzes = quizzes.filter(quiz => quiz.category === category)
 
+    const sortedQuizzes = filteredQuizzes.sort();
+
+    console.log(sortedQuizzes);
+
     function capitalizeFirstLetter(string) {
         return string.charAt(0).toUpperCase() + string.slice(1);
     }
