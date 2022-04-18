@@ -10,7 +10,7 @@ function AdminHome() {
         .then(resp => resp.json())
         .then(grades => {
             const gradesByDate = grades.reverse();
-            setGrades(gradesByDate.slice(0, 5));
+            setGrades(gradesByDate);
         });
     }, [])
 
@@ -25,7 +25,7 @@ function AdminHome() {
             <h1 className="text-4xl text-th-title-text font-bold mb-10">This Weeks Activity</h1>
             <div className="flex bg-th-card-bg rounded-md p-5 mr-5">
                 <div className="text-slate-800 text-lg">Recently Taken Tests</div>
-                <div className="flex flex-col ml-5 border-l pl-5">
+                <div className="flex flex-col h-[40vh] overflow-y-scroll ml-5 border-l pl-5">
                     {grades.map(grade => {
                         return (
                             <div key={grade.id} className="flex py-2 bg-th-light-blue-bg my-1 px-2 rounded">

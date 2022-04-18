@@ -1,5 +1,6 @@
 import { useState } from "react";
 import QuizViewer from "../QuizViewer";
+import ExitTestButton from "./ExitTestButton";
 
 function Questions( { questions, onSubmitScore, setTakingQuiz }) {
     let [questionNumber, setQuestionNumber] = useState(0);
@@ -66,50 +67,60 @@ function Questions( { questions, onSubmitScore, setTakingQuiz }) {
                             Exit Test 
                     </button>
                      <QuizViewer />
+                     <button 
+                        type="button" 
+                        className="w-1/3 mb-5 py-2 mt-2 text-th-light-text bg-th-button rounded hover:bg-th-green-button-hover text-md px-1 text-center"
+                        onClick={() => setTakingQuiz(false)}>
+                            Exit Test 
+                    </button>
                 </div>
                
             ) : (
-                <div className="bg-th-card-bg shadow-md p-10 pb-3 rounded border border-yellow flex flex-col items-center">
-                     {questions[questionNumber].imageUrl ? (
-                                    <img
-                                        src={questions[questionNumber].imageUrl}
-                                        alt="question pic"
-                                        className="w-1/3 mb-8 mt-2 rounded">
-                                    </img>
-                    ) : null }
+                <div className="flex flex-col items-center space-y-5">
+                    <div className="bg-th-card-bg shadow-md p-10 pb-3 rounded border border-yellow flex flex-col items-center">
+                        {questions[questionNumber].imageUrl ? (
+                                        <img
+                                            src={questions[questionNumber].imageUrl}
+                                            alt="question pic"
+                                            className="w-1/3 mb-8 mt-2 rounded">
+                                        </img>
+                        ) : null }
 
-                    <div className="flex flex-col justify-start">
-                        <div className="mb-1 flex flex-col">
-                            <p className="font-semibold">{questionNumber + 1}. {questions[questionNumber].question}</p>
-                            <p className="font-semibold my-3">{questions[questionNumber].bengali}</p>
+                        <div className="flex flex-col justify-start">
+                            <div className="mb-1 flex flex-col">
+                                <p className="font-semibold">{questionNumber + 1}. {questions[questionNumber].question}</p>
+                                <p className="font-semibold my-3">{questions[questionNumber].bengali}</p>
+                            </div>
+                            
+                            {questions[questionNumber].choices.map((choice, index) => {
+                                return (
+                                    <div key={choice} className="mb-1">
+                                        <input type="radio" id={choice} name={questions[questionNumber].id}  onChange={(e) => handleChecked(e, index)} checked={index === results[questionNumber]}></input>
+                                        <label className="pl-1">{choice}</label>
+                                    </div>
+                                )
+                            })}
                         </div>
-                        
-                        {questions[questionNumber].choices.map((choice, index) => {
-                            return (
-                                <div key={choice} className="mb-1">
-                                    <input type="radio" id={choice} name={questions[questionNumber].id}  onChange={(e) => handleChecked(e, index)} checked={index === results[questionNumber]}></input>
-                                    <label className="pl-1">{choice}</label>
-                                </div>
-                            )
-                        })}
-                    </div>
-                    <div className="flex flex-col w-full items-center">
-                        <div className="w-full flex justify-center items-center">
-                            <button 
-                                type="button" 
-                                className="mt-5 w-1/3 text-th-light-text bg-th-button rounded-l border-r hover:bg-th-green-button-hover font-medium text-sm px-5 py-2.5 text-center mb-4"
-                                onClick={handlePreviousClick}>
-                                    ← Previous
-                            </button>
-                            <button 
-                                type="button" 
-                                className="mt-5 w-1/3 text-th-light-text bg-th-button rounded-r hover:bg-th-green-button-hover font-medium text-sm px-5 py-2.5 text-center mb-4"
-                                onClick={handleNextClick}>
-                                    {questionNumber < questions.length - 1 ? "Next →" : "Submit Test"}
-                            </button>
+                        <div className="flex flex-col w-full items-center">
+                            <div className="w-full flex justify-center items-center">
+                                <button 
+                                    type="button" 
+                                    className="mt-5 w-1/3 text-th-light-text bg-th-button rounded-l border-r hover:bg-th-green-button-hover font-medium text-sm px-5 py-2.5 text-center mb-4"
+                                    onClick={handlePreviousClick}>
+                                        ← Previous
+                                </button>
+                                <button 
+                                    type="button" 
+                                    className="mt-5 w-1/3 text-th-light-text bg-th-button rounded-r hover:bg-th-green-button-hover font-medium text-sm px-5 py-2.5 text-center mb-4"
+                                    onClick={handleNextClick}>
+                                        {questionNumber < questions.length - 1 ? "Next →" : "Submit Test"}
+                                </button>
+                            </div>
                         </div>
                     </div>
+                    <ExitTestButton setTakingQuiz={setTakingQuiz} />
                 </div>
+                
             )}
         </div>
     )

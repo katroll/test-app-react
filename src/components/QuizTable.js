@@ -2,7 +2,6 @@ import { NavLink } from "react-router-dom"
 
 import { useContext, useState } from "react"
 import { UserContext } from "../context/User"
-import { QuizzesContext } from "../context/Quizzes"
 import TestDeletePopup from "./TestDeletePopup";
 
 
