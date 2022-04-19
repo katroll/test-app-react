@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import ClassTable from "./ClassTable";
 import CreateNewClass from "./CreateNewClass";
+import EditClass from "./EditClass";
 
 
 function ClassesContainer() {
@@ -24,7 +25,10 @@ function ClassesContainer() {
 
     return (
         <div className="flex flex-col pt-5 divide-y divide-th-border">
-            <CreateNewClass addNewClass={addNewClass}/>
+            <div>
+                <CreateNewClass addNewClass={addNewClass}/>
+                <EditClass classes={classes}/>
+            </div>
             <div className="flex flex-col items-center space-y-3">
                 <p className="mt-3 text-3xl font-bold text-th-title-text">Current Classes</p>
                 {classes.map(spctc_class => <ClassTable key={`${spctc_class.name}-${spctc_class.id}`} spctc_class={spctc_class}/> )}

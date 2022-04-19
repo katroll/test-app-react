@@ -50,7 +50,7 @@ module.exports = {
           "100": "#08ff4a",
         }, 
         gray: {
-          "50": "#c6ccc7",
+          "50": "#e1eaf7",
           "100": "#a6aba7",
         },
         transparent: {
