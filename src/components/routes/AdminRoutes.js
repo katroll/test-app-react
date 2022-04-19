@@ -8,7 +8,7 @@ import TestDataContainer from '../admins/testData/TastDataContainer';
 import TestList from '../TestList';
 
 import { UsersProvider } from "../../context/Users"
-import ClassesContainer from "../admins/ClassesContainer";
+import ClassesContainer from "../admins/classes/ClassesContainer";
 
 function AdminRoutes() {
 
