@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { gsap } from "gsap";
 
 function CreateNewClass({ addNewClass }) {
     const [createClass, setCreateClass] = useState(false);
@@ -30,9 +31,19 @@ function CreateNewClass({ addNewClass }) {
         setCreateClass(!createClass);
     }
 
+    const onMouseEnterButton = ({ currentTarget }) => {
+        gsap.to(currentTarget, { x: 20, duration: 1 });
+    };
+
+    const onMouseLeaveButton = ({ currentTarget }) => {
+        gsap.to(currentTarget, { x: 0, duration: 1 });
+    };
+
     return (
         <div className="flex flex-col items-start">
             <button
+                onMouseEnter={onMouseEnterButton}
+                onMouseLeave={onMouseLeaveButton}
                 className="flex items-center pl-10 mb-3 text-2xl font-bold text-th-title-text"
                 onClick={addClassToggle}>
                     <svg 

@@ -3,7 +3,7 @@ import { QuizzesContext } from "../../../context/Quizzes"
 import { UsersContext } from "../../../context/Users"
 
 
-function EditClass({ classes, fetchClasses }) {
+function EditClass({ classes, fetchClasses, onMouseEnterButton, onMouseLeaveButton }) {
     const students = useContext(UsersContext).users.filter(user => !user.admin).sort((a,b) => (b.first_name.toLowerCase() < a.first_name.toLowerCase()) ? 1 : ((a.first_name.toLowerCase() < b.first_name.toLowerCase()) ? -1 : 0));
     const tests = useContext(QuizzesContext).quizzes;
     const [editClass, setEditClass] = useState(false);
@@ -91,6 +91,8 @@ function EditClass({ classes, fetchClasses }) {
     return (
         <div className="flex flex-col w-full items-start">
             <button
+                onMouseEnter={onMouseEnterButton}
+                onMouseLeave={onMouseLeaveButton}
                 className="flex items-center pl-10 mb-3 text-2xl font-bold text-th-title-text"
                 onClick={toggleEditClass}>
                     <svg 
