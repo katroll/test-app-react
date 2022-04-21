@@ -7,6 +7,8 @@ import EditClass from "./EditClass";
 function ClassesContainer() {
     const [classes, setClasses] = useState([]);
 
+    console.log(classes)
+
     useEffect(() => {
         fetchClasses();
     }, [])

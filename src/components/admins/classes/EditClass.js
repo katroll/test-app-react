@@ -7,10 +7,6 @@ function EditClass({ classes, fetchClasses }) {
     const students = useContext(UsersContext).users.filter(user => !user.admin).sort((a,b) => (b.first_name.toLowerCase() < a.first_name.toLowerCase()) ? 1 : ((a.first_name.toLowerCase() < b.first_name.toLowerCase()) ? -1 : 0));
     const tests = useContext(QuizzesContext).quizzes;
     const [editClass, setEditClass] = useState(false);
-    const [classToEditName, setClassToEditName] = useState("");
-    const [studentsToAdd, setStudentsToAdd] = useState([]);
-    const [testsToAdd, setTestsToAdd] = useState([]);
-
     const [classToEdit, setClassToEdit] = useState({
         class: {},
         studentsToAdd: [],
@@ -47,12 +43,9 @@ function EditClass({ classes, fetchClasses }) {
     }
 
     function handleSubmitEditClass(e) {
-        e.preventDefault();
-
         if(classToEdit.studentsToAdd.length > 0) {
             handleEditClass("students");
         }
-
         if(classToEdit.testsToAdd.length > 0) {
             handleEditClass("tests");
         }
@@ -117,15 +110,14 @@ function EditClass({ classes, fetchClasses }) {
                     <p>Edit Class</p>
             </button>
             {editClass ? (
-                <div className="flex w-full justify-start mb-3 pl-10 py-3 w-full bg-th-card-bg divide-x divide-th-border">
+                <div className="flex w-full justify-start mb-3 pl-10 py-3 bg-th-card-bg divide-x divide-th-border">
                     <form 
-                        className="flex flex-col items-start justify-start w-1/2 space-y-2 justify-center"
-                        onSubmit={handleSubmitEditClass}
+                        className="flex flex-col w-2/5 items-start justify-start space-y-2 justify-center"
                     >
                         <div className="flex w-full space-x-2">
                             <label>Select Class to Edit: </label>
                             <select className="p-1 w-1/3 text-sm outline-none border border-th-border rounded" name="class" onChange={handleClassEditChanges}>
-                                <option>Select</option>
+                                <option value={null}>Select</option>
                                 {classes.map(spctc_class => {
                                     return (
                                         <option key={`${spctc_class.name}-${spctc_class.id}`} value={spctc_class.id}>{spctc_class.name}</option>
@@ -133,58 +125,70 @@ function EditClass({ classes, fetchClasses }) {
                                 })}
                             </select> 
                         </div>
-                        <div className="flex w-full space-x-2">
-                            <label>Select Students to Add: </label>
-                            <select className="p-1 w-1/3 text-sm outline-none border border-th-border rounded" name="studentsToAdd" onChange={handleClassEditChanges}>
-                                <option>Select</option>
-                                {students.map(student => {
-                                    return (
-                                        <option key={`${student.first_name}-${student.id}`} value={student.id}>{student.first_name} {student.last_name}</option>
-                                    )
-                                })}
-                            </select> 
-                        </div>
-                        <div className="flex w-full space-x-2">
-                            <label>Select Tests to Add: </label>
-                            <select className="p-1 w-1/3 text-sm outline-none border border-th-border rounded" name="testsToAdd" onChange={handleClassEditChanges}>
-                                <option>Select</option>
-                                {tests.map(test => {
-                                    return (
-                                        <option key={`${test.name}-${test.id}`} value={test.id}>{test.name}</option>
-                                    )
-                                })}
-                            </select> 
-                        </div>
-                        <button 
-                            type="submit"
-                            className="p-1 bg-th-title-text text-th-light-text rounded">
-                                Update Class
-                        </button>
+                        {classToEdit.class.name ? (
+                            <div className="flex flex-col space-y-2">
+                                <div className="flex w-full space-x-2">
+                                    <label>Select Students to Add: </label>
+                                    <select className="p-1 w-1/3 text-sm outline-none border border-th-border rounded" name="studentsToAdd" onChange={handleClassEditChanges}>
+                                        <option>Select</option>
+                                        {students.map(student => {
+                                            return (
+                                                <option key={`${student.first_name}-${student.id}`} value={student.id}>{student.first_name} {student.last_name}</option>
+                                            )
+                                        })}
+                                    </select> 
+                                </div>
+                                <div className="flex w-full space-x-2">
+                                    <label>Select Tests to Add: </label>
+                                    <select className="p-1 w-1/3 text-sm outline-none border border-th-border rounded" name="testsToAdd" onChange={handleClassEditChanges}>
+                                        <option vlaue={null}>Select</option>
+                                        {tests.map(test => {
+                                            return (
+                                                <option key={`${test.name}-${test.id}`} value={test.id}>{test.name}</option>
+                                            )
+                                        })}
+                                    </select> 
+                                </div>
+                            </div>
+                        ) : null }
                     </form>
-                    <div className="flex flex-col">
-                       {classToEdit.class.name ? (
-                           <p>Editing {classToEdit.class.name}...</p>
+                    <div className="flex flex-col pl-3 w-2/3 justify-between">
+                        {classToEdit.class.name ? (
+                            <p className="font-semibold">Editing {classToEdit.class.name}...</p>
                         ) : null}
                         {classToEdit.studentsToAdd.length > 0 ? (
-                            <div>
+                            <div className="flex space-x-2">
                                 <p>Add these students:</p>
-                                {classToEdit.studentsToAdd.map(student => {
-                                    return (
-                                        <p key={student}>{`${student.first_name} ${student.last_name}`}</p>
-                                    )
-                                })}
-                           </div>
+                                <div className="flex flex-col">
+                                    {classToEdit.studentsToAdd.map(student => {
+                                        return (
+                                            <p key={`${student.first_name}-${student.id}`}>{`${student.first_name} ${student.last_name}`}</p>
+                                        )
+                                    })}
+                                </div>
+                        </div>
                         ) : null}
                         {classToEdit.testsToAdd.length > 0 ? (
-                            <div>
+                            <div className="flex space-x-2">
                                 <p>Add these tests:</p>
-                                {classToEdit.testsToAdd.map(test => {
-                                    return (
-                                        <p key={test}>{test.name}</p>
-                                    )
-                                })}
-                           </div>
+                                <div className="flex flex-col">
+                                    {classToEdit.testsToAdd.map(test => {
+                                        return (
+                                            <p key={`${test.name}-${test.id}`}>{test.name}</p>
+                                        )
+                                    })}
+                                </div>
+                        </div>
                         ) : null}
+                        {classToEdit.testsToAdd.length > 0 || classToEdit.studentsToAdd.length > 0 ? (
+                            <div className="flex w-full justify-center">
+                                <button 
+                                    onClick={handleSubmitEditClass}
+                                    className="p-1 w-1/4 bg-th-title-text text-th-light-text rounded">
+                                        Update Class
+                                </button>
+                            </div>
+                        ) : null }
                     </div>
                 </div>
             ) : null}
