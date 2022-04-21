@@ -110,7 +110,7 @@ function UplaodQuiz() {
           })
           .then(resp => resp.json())
           
-        })
+        }) 
     
         Promise.all(allFetches).then(resp => {
           const questions = resp.sort((a, b) => a.number - b.number);

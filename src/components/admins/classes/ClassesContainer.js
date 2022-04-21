@@ -8,6 +8,10 @@ function ClassesContainer() {
     const [classes, setClasses] = useState([]);
 
     useEffect(() => {
+        fetchClasses();
+    }, [])
+
+    function fetchClasses() {
         fetch("https://morning-scrubland-82075.herokuapp.com/spctc_classes")
         .then((resp) => {
             if (resp.ok) {
@@ -16,7 +20,7 @@ function ClassesContainer() {
                 resp.json().then(errors => console.log(errors))
             }
         });
-    }, [])
+    }
 
     function addNewClass(newClass) {
         setClasses([...classes, newClass]);
@@ -27,7 +31,7 @@ function ClassesContainer() {
         <div className="flex flex-col pt-5 divide-y divide-th-border">
             <div>
                 <CreateNewClass addNewClass={addNewClass}/>
-                <EditClass classes={classes}/>
+                <EditClass classes={classes} fetchClasses={fetchClasses}/>
             </div>
             <div className="flex flex-col items-center space-y-3">
                 <p className="mt-3 text-3xl font-bold text-th-title-text">Current Classes</p>
