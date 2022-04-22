@@ -8,8 +8,6 @@ import { gsap } from "gsap";
 function ClassesContainer() {
     const [classes, setClasses] = useState([]);
 
-    console.log(classes)
-
     useEffect(() => {
         fetchClasses();
     }, [])

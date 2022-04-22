@@ -13,33 +13,43 @@ function EditClass({ classes, fetchClasses, onMouseEnterButton, onMouseLeaveButt
         testsToAdd: []
     })
 
-    function findStudentById(id) {
-        return students.find(student => student.id === id);
-    }
+    const testsInDropdown = tests.filter(test => !classToEdit.testsToAdd.includes(test) && (classToEdit.class || !classToEdit.class.quizzes.includes(test)));
+    const studentsInDropdown = students.filter(student => !classToEdit.studentsToAdd.includes(student) || (classToEdit.class && !classToEdit.class.users.includes(student)));
 
-    function findTestById(id) {
-        return tests.find(test => test.id === id);
-    }
 
-    function findClassById(id) {
-        return classes.find(spctc_class => spctc_class.id === id)
+    function findById(id, arrayToSearch) {
+        if(arrayToSearch === "students") {
+            return students.find(element => element.id === id);
+        }
+        if(arrayToSearch === "tests") {
+            return tests.find(element => element.id === id);
+        }
+        if(arrayToSearch === "classes") {
+            return classes.find(element => element.id === id);
+        }
     }
 
     function handleClassEditChanges(e) {
+        if(e.target.value === "") {
+            return;
+        }
+
         const key = e.target.name;
         const id = parseInt(e.target.value);
-        
+
         if(key === "studentsToAdd") {
-            const students = [...classToEdit.studentsToAdd, findStudentById(id)];
+            const students = [...classToEdit.studentsToAdd, findById(id, "students")];
             setClassToEdit({...classToEdit, studentsToAdd: students});
             return;
         }
         if(key === "testsToAdd") {
-            const tests = [...classToEdit.testsToAdd, findTestById(id)];
+            const tests = [...classToEdit.testsToAdd, findById(id, "tests")];
             setClassToEdit({...classToEdit, testsToAdd: tests});
             return;
         }
-        setClassToEdit({...classToEdit, class: findClassById(id)})
+        if(key === "class") {
+            setClassToEdit({...classToEdit, class: findById(id, "classes")});
+        }
     }
 
     function handleSubmitEditClass(e) {
@@ -119,7 +129,7 @@ function EditClass({ classes, fetchClasses, onMouseEnterButton, onMouseLeaveButt
                         <div className="flex w-full space-x-2">
                             <label>Select Class to Edit: </label>
                             <select className="p-1 w-1/3 text-sm outline-none border border-th-border rounded" name="class" onChange={handleClassEditChanges}>
-                                <option value={null}>Select</option>
+                                <option value="">Select</option>
                                 {classes.map(spctc_class => {
                                     return (
                                         <option key={`${spctc_class.name}-${spctc_class.id}`} value={spctc_class.id}>{spctc_class.name}</option>
@@ -132,8 +142,8 @@ function EditClass({ classes, fetchClasses, onMouseEnterButton, onMouseLeaveButt
                                 <div className="flex w-full space-x-2">
                                     <label>Select Students to Add: </label>
                                     <select className="p-1 w-1/3 text-sm outline-none border border-th-border rounded" name="studentsToAdd" onChange={handleClassEditChanges}>
-                                        <option>Select</option>
-                                        {students.map(student => {
+                                        <option value="">Select</option>
+                                        {studentsInDropdown.map(student => {
                                             return (
                                                 <option key={`${student.first_name}-${student.id}`} value={student.id}>{student.first_name} {student.last_name}</option>
                                             )
@@ -143,8 +153,8 @@ function EditClass({ classes, fetchClasses, onMouseEnterButton, onMouseLeaveButt
                                 <div className="flex w-full space-x-2">
                                     <label>Select Tests to Add: </label>
                                     <select className="p-1 w-1/3 text-sm outline-none border border-th-border rounded" name="testsToAdd" onChange={handleClassEditChanges}>
-                                        <option vlaue={null}>Select</option>
-                                        {tests.map(test => {
+                                        <option value="">Select</option>
+                                        {testsInDropdown.map(test => {
                                             return (
                                                 <option key={`${test.name}-${test.id}`} value={test.id}>{test.name}</option>
                                             )

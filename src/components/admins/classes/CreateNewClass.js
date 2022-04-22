@@ -1,11 +1,10 @@
 import { useState } from "react";
-import { gsap } from "gsap";
 
-function CreateNewClass({ addNewClass }) {
+
+function CreateNewClass({ addNewClass, onMouseEnterButton, onMouseLeaveButton }) {
     const [createClass, setCreateClass] = useState(false);
     const [newClassName, setNewClassName] = useState("");
 
-    console.log(newClassName)
 
     function handleCreateNewClass(e) {
         e.preventDefault();
@@ -30,14 +29,6 @@ function CreateNewClass({ addNewClass }) {
     function addClassToggle() {
         setCreateClass(!createClass);
     }
-
-    const onMouseEnterButton = ({ currentTarget }) => {
-        gsap.to(currentTarget, { x: 20, duration: 1 });
-    };
-
-    const onMouseLeaveButton = ({ currentTarget }) => {
-        gsap.to(currentTarget, { x: 0, duration: 1 });
-    };
 
     return (
         <div className="flex flex-col items-start">
