@@ -76,13 +76,13 @@ function Questions( { questions, onSubmitScore, setTakingQuiz }) {
                 </div>
                
             ) : (
-                <div className="flex flex-col items-center space-y-5">
-                    <div className="bg-th-card-bg shadow-md p-10 pb-3 rounded border border-yellow flex flex-col items-center">
+                <div className="flex flex-col w-full  items-center space-y-5">
+                    <div className="w-full bg-th-card-bg shadow-md p-10 pb-3 rounded border border-yellow flex flex-col items-center">
                         {questions[questionNumber].imageUrl ? (
                                         <img
                                             src={questions[questionNumber].imageUrl}
                                             alt="question pic"
-                                            className="w-1/3 mb-8 mt-2 rounded">
+                                            className="w-1/2 mb-8 mt-2 rounded">
                                         </img>
                         ) : null }
 
