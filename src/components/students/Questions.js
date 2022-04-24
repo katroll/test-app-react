@@ -82,7 +82,7 @@ function Questions( { questions, onSubmitScore, setTakingQuiz }) {
                                         <img
                                             src={questions[questionNumber].imageUrl}
                                             alt="question pic"
-                                            className="w-1/2 mb-8 mt-2 rounded">
+                                            className="max-h-[50vh] max-w-3/4 mb-8 mt-2 rounded">
                                         </img>
                         ) : null }
 
