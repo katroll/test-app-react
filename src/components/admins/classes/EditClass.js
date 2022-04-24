@@ -13,8 +13,20 @@ function EditClass({ classes, fetchClasses, onMouseEnterButton, onMouseLeaveButt
         testsToAdd: []
     })
 
-    const testsInDropdown = tests.filter(test => !classToEdit.testsToAdd.includes(test) && (classToEdit.class || !classToEdit.class.quizzes.includes(test)));
-    const studentsInDropdown = students.filter(student => !classToEdit.studentsToAdd.includes(student) || (classToEdit.class && !classToEdit.class.users.includes(student)));
+    function fullName(user) {
+        return `${user.first_name} ${user.last_name}`
+    }
+
+    function currentTests() {
+        return [...classToEdit.testsToAdd, ...(classToEdit.class.quizzes ? classToEdit.class.quizzes: [])].map(test => test.name);
+    }
+
+    function currentStudents() {
+        return [...classToEdit.studentsToAdd, ...(classToEdit.class.users ? classToEdit.class.users : [])].map(student => fullName(student));
+    }
+
+    const testsInDropdown = tests.filter(test => !currentTests().includes(test.name));
+    const studentsInDropdown = students.filter(student => !currentStudents().includes(fullName(student)));
 
 
     function findById(id, arrayToSearch) {
