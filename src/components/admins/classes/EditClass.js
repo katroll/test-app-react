@@ -66,32 +66,18 @@ function EditClass({ classes, fetchClasses, onMouseEnterButton, onMouseLeaveButt
 
     function handleSubmitEditClass(e) {
         if(classToEdit.studentsToAdd.length > 0) {
-            handleEditClass("students");
+            closeDropdown(`collapse-class-students-${classToEdit.class.id}`);
+            handleEditClass("users_classes", "user_id", classToEdit.studentsToAdd);
         }
         if(classToEdit.testsToAdd.length > 0) {
-            handleEditClass("tests");
+            closeDropdown(`collapse-class-tests-${classToEdit.class.id}`);
+            handleEditClass("quizzes_classes", "quiz_id", classToEdit.testsToAdd);
         }
     }
 
-    function handleEditClass(typeOfEdit) {
-        let path;
-        let elementId;
-        let updateArray;
-
-        if(typeOfEdit === "students") {
-            path = "users_classes";
-            elementId = "user_id";
-            updateArray = classToEdit.studentsToAdd;
-        } 
-
-        if(typeOfEdit === "tests") {
-            path = "quizzes_classes";
-            elementId = "quiz_id";
-            updateArray = classToEdit.testsToAdd;
-        } 
-
+    function handleEditClass(table, elementId, updateArray) {
         const allFetches = updateArray.map(element => {
-            return fetch(`https://morning-scrubland-82075.herokuapp.com/${path}`, {
+            return fetch(`https://morning-scrubland-82075.herokuapp.com/${table}`, {
                 method: "POST",
                 headers: {"Content-Type": "application/json"},
                 body: JSON.stringify({spctc_class_id: classToEdit.class.id, [elementId]: element.id})
@@ -102,6 +88,7 @@ function EditClass({ classes, fetchClasses, onMouseEnterButton, onMouseLeaveButt
         Promise.all(allFetches).then(resp => {
             fetchClasses();
           })
+          .then(resp => setEditClass(false))
     }
 
 
@@ -109,6 +96,9 @@ function EditClass({ classes, fetchClasses, onMouseEnterButton, onMouseLeaveButt
         setEditClass(!editClass);
     }
 
+    function closeDropdown(element) {
+        document.getElementById(element).hide();
+    }
 
     return (
         <div className="flex flex-col w-full items-start">

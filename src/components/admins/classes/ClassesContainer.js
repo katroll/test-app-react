@@ -59,7 +59,7 @@ function ClassesContainer() {
             </div>
             <div className="flex flex-col items-center space-y-3">
                 <p className="mt-3 text-3xl font-bold text-th-title-text">Current Classes</p>
-                {classes.map(spctc_class => <ClassTable key={`${spctc_class.name}-${spctc_class.id}`} spctc_class={spctc_class} handleRemoveClass={handleRemoveClass}/> )}
+                {classes.map(spctc_class => <ClassTable key={`${spctc_class.name}-${spctc_class.id}`} spctc_class={spctc_class} handleRemoveClass={handleRemoveClass} fetchClasses={fetchClasses}/> )}
             </div>
         </div>
     )
