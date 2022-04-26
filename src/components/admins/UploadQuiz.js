@@ -22,8 +22,6 @@ function UplaodQuiz() {
     const [error, setError] = useState([]);
     const categories = ["Beginner", "Intermediate", "Advanced", "English", "Misc"];
 
-    console.log(questions);
-
     function handleFormChange(e) {
         const key = e.target.name;
         if(key === "name") {

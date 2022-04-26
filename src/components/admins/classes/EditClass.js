@@ -65,14 +65,20 @@ function EditClass({ classes, fetchClasses, onMouseEnterButton, onMouseLeaveButt
     }
 
     function handleSubmitEditClass(e) {
+        e.preventDefault();
+
         if(classToEdit.studentsToAdd.length > 0) {
-            closeDropdown(`collapse-class-students-${classToEdit.class.id}`);
             handleEditClass("users_classes", "user_id", classToEdit.studentsToAdd);
         }
         if(classToEdit.testsToAdd.length > 0) {
-            closeDropdown(`collapse-class-tests-${classToEdit.class.id}`);
             handleEditClass("quizzes_classes", "quiz_id", classToEdit.testsToAdd);
         }
+
+        setClassToEdit({
+            class: {},
+            studentsToAdd: [],
+            testsToAdd: []
+        });
     }
 
     function handleEditClass(table, elementId, updateArray) {
@@ -96,9 +102,7 @@ function EditClass({ classes, fetchClasses, onMouseEnterButton, onMouseLeaveButt
         setEditClass(!editClass);
     }
 
-    function closeDropdown(element) {
-        document.getElementById(element).hide();
-    }
+    console.log(classes)
 
     return (
         <div className="flex flex-col w-full items-start">
@@ -124,48 +128,50 @@ function EditClass({ classes, fetchClasses, onMouseEnterButton, onMouseLeaveButt
                     <p>Edit Class</p>
             </button>
             {editClass ? (
-                <div className="flex w-full justify-start mb-3 pl-10 py-3 bg-th-card-bg divide-x divide-th-border">
+                <div className="flex w-full justify-start mb-3 pl-10 py-3 bg-th-card-bg">
                     <form 
-                        className="flex flex-col w-2/5 items-start justify-start space-y-2 justify-center"
+                        className="flex w-full items-start justify-start space-y-2 justify-center divide-x divide-th-border"
+                        onSubmit={handleSubmitEditClass}
                     >
-                        <div className="flex w-full space-x-2">
-                            <label>Select Class to Edit: </label>
-                            <select className="p-1 w-1/3 text-sm outline-none border border-th-border rounded" name="class" onChange={handleClassEditChanges}>
-                                <option value="">Select</option>
-                                {classes.map(spctc_class => {
-                                    return (
-                                        <option key={`${spctc_class.name}-${spctc_class.id}`} value={spctc_class.id}>{spctc_class.name}</option>
-                                    )
-                                })}
-                            </select> 
-                        </div>
-                        {classToEdit.class.name ? (
-                            <div className="flex flex-col space-y-2">
-                                <div className="flex w-full space-x-2">
-                                    <label>Select Students to Add: </label>
-                                    <select className="p-1 w-1/3 text-sm outline-none border border-th-border rounded" name="studentsToAdd" onChange={handleClassEditChanges}>
-                                        <option value="">Select</option>
-                                        {studentsInDropdown.map(student => {
-                                            return (
-                                                <option key={`${student.first_name}-${student.id}`} value={student.id}>{student.first_name} {student.last_name}</option>
-                                            )
-                                        })}
-                                    </select> 
-                                </div>
-                                <div className="flex w-full space-x-2">
-                                    <label>Select Tests to Add: </label>
-                                    <select className="p-1 w-1/3 text-sm outline-none border border-th-border rounded" name="testsToAdd" onChange={handleClassEditChanges}>
-                                        <option value="">Select</option>
-                                        {testsInDropdown.map(test => {
-                                            return (
-                                                <option key={`${test.name}-${test.id}`} value={test.id}>{test.name}</option>
-                                            )
-                                        })}
-                                    </select> 
-                                </div>
+                        <div className="flex flex-col w-2/5">
+                            <div className="flex w-full space-x-2">
+                                <label>Select Class to Edit: </label>
+                                <select className="p-1 w-1/3 text-sm outline-none border border-th-border rounded" name="class" onChange={handleClassEditChanges}>
+                                    <option value="">Select</option>
+                                    {classes.map(spctc_class => {
+                                        return (
+                                            <option key={`${spctc_class.name}-${spctc_class.id}`} value={spctc_class.id}>{spctc_class.name}</option>
+                                        )
+                                    })}
+                                </select> 
                             </div>
-                        ) : null }
-                    </form>
+                            {classToEdit.class.name ? (
+                                <div className="flex flex-col space-y-2 mt-2">
+                                    <div className="flex w-full space-x-2">
+                                        <label>Select Students to Add: </label>
+                                        <select className="p-1 w-1/3 text-sm outline-none border border-th-border rounded" name="studentsToAdd" onChange={handleClassEditChanges}>
+                                            <option value="">Select</option>
+                                            {studentsInDropdown.map(student => {
+                                                return (
+                                                    <option key={`${student.first_name}-${student.id}`} value={student.id}>{student.first_name} {student.last_name}</option>
+                                                )
+                                            })}
+                                        </select> 
+                                    </div>
+                                    <div className="flex w-full space-x-2">
+                                        <label>Select Tests to Add: </label>
+                                        <select className="p-1 w-1/3 text-sm outline-none border border-th-border rounded" name="testsToAdd" onChange={handleClassEditChanges}>
+                                            <option value="">Select</option>
+                                            {testsInDropdown.map(test => {
+                                                return (
+                                                    <option key={`${test.name}-${test.id}`} value={test.id}>{test.name}</option>
+                                                )
+                                            })}
+                                        </select> 
+                                    </div>
+                                </div>
+                            ) : null }
+                        </div>
                     <div className="flex flex-col pl-3 w-2/3 justify-between">
                         {classToEdit.class.name ? (
                             <p className="font-semibold">Editing {classToEdit.class.name}...</p>
@@ -197,13 +203,14 @@ function EditClass({ classes, fetchClasses, onMouseEnterButton, onMouseLeaveButt
                         {classToEdit.testsToAdd.length > 0 || classToEdit.studentsToAdd.length > 0 ? (
                             <div className="flex w-full justify-center">
                                 <button 
-                                    onClick={handleSubmitEditClass}
+                                    type="submit"
                                     className="p-1 w-1/4 bg-th-title-text text-th-light-text rounded">
                                         Update Class
                                 </button>
                             </div>
                         ) : null }
                     </div>
+                    </form>
                 </div>
             ) : null}
         </div>

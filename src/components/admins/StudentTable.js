@@ -9,9 +9,6 @@ function StudentTable({ setPopUp, setSelectedUser }) {
     const [nameSearch, setNameSearch] = useState(""); 
     const [usernameSearch, setUsernameSearch] = useState(""); 
 
-    console.log(students);
-
-
     function onUserClick(user) {
         setPopUp(true);
         setSelectedUser(user);

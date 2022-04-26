@@ -83,7 +83,7 @@ function ClassTable({ spctc_class, handleRemoveClass, fetchClasses }) {
             </div>
                 {spctc_class.quizzes.map((test, index) => {
                     return (
-                        <ul key={`${test.first_name}-${test.id}`} className="relative w-full accordion-collapse collapse" id={`collapse-class-tests-${spctc_class.id}`} aria-labelledby="sidenavSecEx2" data-bs-parent="#sidenavSecExample">
+                        <ul key={`${test.name}-${test.id}`} className="relative w-full accordion-collapse collapse" id={`collapse-class-tests-${spctc_class.id}`} aria-labelledby="sidenavSecEx2" data-bs-parent="#sidenavSecExample">
                             <li className="relative">
                                 <div className={`flex justify-between text-sm  py-2 px-5 bg-th-card-bg transition duration-300 ease-in-out group ${index < spctc_class.quizzes.length - 1 ? "border-b border-th-border" : null}`}>
                                     <p>{test.name}</p>
