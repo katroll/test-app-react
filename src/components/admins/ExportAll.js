@@ -10,8 +10,6 @@ function ExportAll() {
     const [grades, setGrades] = useState([]);
     const exportQuizzes = [];
 
-    console.log(grades);
-
     quizzes.forEach(quiz => {
         quiz.questions.forEach(question => {
             exportQuizzes.push({quiz_id: quiz.id, quiz_name: quiz.name, category: quiz.category, ...question});

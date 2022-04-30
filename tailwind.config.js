@@ -50,6 +50,7 @@ module.exports = {
           "100": "#08ff4a",
         }, 
         gray: {
+          "50": "#e1eaf7",
           "100": "#a6aba7",
         },
         transparent: {
@@ -80,6 +81,7 @@ module.exports = {
         "th-faded-highlight": "var(--faded-highlight)",
         "th-navbar-hover": "var(--navbar-hover)",
         "th-light-blue-bg": "var(--light-blue-bg)",
+        "th-light-gray-bg": "var(--light-gray-bg)",
  
         
 

@@ -8,6 +8,7 @@ import TestDataContainer from '../admins/testData/TastDataContainer';
 import TestList from '../TestList';
 
 import { UsersProvider } from "../../context/Users"
+import ClassesContainer from "../admins/classes/ClassesContainer";
 
 function AdminRoutes() {
 
@@ -30,6 +31,9 @@ function AdminRoutes() {
                     />
                     <Route path={`/students`}
                     element={<UserContainer />}
+                    />
+                    <Route exact path={`/classes`} 
+                    element={<ClassesContainer />}
                     />
                     <Route path={`/`}
                     element={<AdminHome />}

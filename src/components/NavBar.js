@@ -63,6 +63,13 @@ function NavBar({ onSignOut }) {
                     </li>   
                 </ul>
                 <ul className="relative px-1">
+                    <li className="relative" onClick={() => navigate(`/classes`)}>
+                        <a className="flex items-center text-md font-semibold py-4 px-6 h-12 overflow-hidden text-th-light-text text-ellipsis whitespace-nowrap rounded hover:text-th-title-text hover:bg-th-navbar-hover transition duration-300 ease-in-out" href="#!" data-mdb-ripple="true" data-mdb-ripple-color="stone">
+                            <span>Classes</span>
+                        </a>
+                    </li>   
+                </ul>
+                <ul className="relative px-1">
                     <li className="relative" onClick={() => navigate(`/testdata`)}>
                         <a className="flex items-center text-md font-semibold py-4 px-6 h-12 overflow-hidden text-th-light-text text-ellipsis whitespace-nowrap rounded hover:text-th-title-text hover:bg-th-navbar-hover transition duration-300 ease-in-out" href="#!" data-mdb-ripple="true" data-mdb-ripple-color="stone">
                             <span>Testing Data</span>

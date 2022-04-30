@@ -22,8 +22,6 @@ function UplaodQuiz() {
     const [error, setError] = useState([]);
     const categories = ["Beginner", "Intermediate", "Advanced", "English", "Misc"];
 
-    console.log(questions);
-
     function handleFormChange(e) {
         const key = e.target.name;
         if(key === "name") {
@@ -110,7 +108,7 @@ function UplaodQuiz() {
           })
           .then(resp => resp.json())
           
-        })
+        }) 
     
         Promise.all(allFetches).then(resp => {
           const questions = resp.sort((a, b) => a.number - b.number);
