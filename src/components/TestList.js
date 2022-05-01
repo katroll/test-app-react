@@ -2,11 +2,22 @@ import { useParams } from "react-router-dom"
 import { useContext } from "react"
 import { QuizzesContext } from "../context/Quizzes"
 import QuizTable from "./QuizTable"
+import { UserContext } from "../context/User"
 
 
 function TestList() {
-    const quizzes = useContext(QuizzesContext).quizzes;
+    let quizzes = useContext(QuizzesContext).quizzes;
+    const user = useContext(UserContext).user;
     const { category } = useParams();
+
+
+    if(!user.admin) {
+        quizzes = [];
+        user.spctc_classes.forEach(spctc_class => {
+            quizzes = [...quizzes, ...spctc_class.quizzes];
+        });
+    }
+
 
     const filteredQuizzes = quizzes.filter(quiz => quiz.category === category)
     const sortedQuizzes = filteredQuizzes.sort((a,b) => (a.name > b.name) ? 1 : -1);
