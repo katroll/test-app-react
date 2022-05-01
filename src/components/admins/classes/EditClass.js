@@ -102,8 +102,6 @@ function EditClass({ classes, fetchClasses, onMouseEnterButton, onMouseLeaveButt
         setEditClass(!editClass);
     }
 
-    console.log(classes)
-
     return (
         <div className="flex flex-col w-full items-start">
             <button
