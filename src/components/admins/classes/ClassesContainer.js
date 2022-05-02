@@ -14,7 +14,11 @@ function ClassesContainer() {
     }, [])
 
     function fetchClasses() {
-        fetch("https://morning-scrubland-82075.herokuapp.com/spctc_classes")
+        fetch("https://morning-scrubland-82075.herokuapp.com/spctc_classes", {
+            headers: {
+                key: "04af711a-ca6c-11ec-9d64-0242ac120002"
+            }
+        })
         .then((resp) => {
             if (resp.ok) {
                 resp.json().then(classes => setClasses(classes));
@@ -31,6 +35,9 @@ function ClassesContainer() {
     function handleRemoveClass(id) {
         fetch(`https://morning-scrubland-82075.herokuapp.com/spctc_classes/${id}`, {
             method: "DELETE",
+            headers: {
+                key: "04af711a-ca6c-11ec-9d64-0242ac120002"
+            }
         })
         .then((resp) => {
             if (resp.ok) {

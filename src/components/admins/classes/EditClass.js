@@ -85,7 +85,10 @@ function EditClass({ classes, fetchClasses, onMouseEnterButton, onMouseLeaveButt
         const allFetches = updateArray.map(element => {
             return fetch(`https://morning-scrubland-82075.herokuapp.com/${table}`, {
                 method: "POST",
-                headers: {"Content-Type": "application/json"},
+                headers: {
+                    "Content-Type": "application/json",
+                    key: "04af711a-ca6c-11ec-9d64-0242ac120002"
+                },
                 body: JSON.stringify({spctc_class_id: classToEdit.class.id, [elementId]: element.id})
             })
             .then(resp => resp.json())

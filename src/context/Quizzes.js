@@ -14,6 +14,9 @@ function QuizzesProvider({ children }) {
         const signal = controller.signal;
 
         fetch("https://morning-scrubland-82075.herokuapp.com/quizzes", {
+            headers: { 
+                key: "04af711a-ca6c-11ec-9d64-0242ac120002" 
+            },
             signal: signal
         })
         .then(resp => resp.json())
@@ -46,6 +49,9 @@ function QuizzesProvider({ children }) {
     function deleteQuiz(quizToDelete, setDeleteQuizResult) {
         fetch(`https://morning-scrubland-82075.herokuapp.com/quizzes/${quizToDelete.id}`, {
             method: "DELETE",
+            headers: { 
+                key: "04af711a-ca6c-11ec-9d64-0242ac120002" 
+            }
         })
         .then((resp) => {
             if (resp.ok) {

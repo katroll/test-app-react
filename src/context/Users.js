@@ -7,7 +7,11 @@ function UsersProvider({ children }) {
     const [users, setUsers] = useState([])
 
     useEffect(() => {
-        fetch("https://morning-scrubland-82075.herokuapp.com/users")
+        fetch("https://morning-scrubland-82075.herokuapp.com/users", {
+          headers: { 
+            key: "04af711a-ca6c-11ec-9d64-0242ac120002" 
+          }
+        })
         .then(resp => resp.json())
         .then(users => setUsers(users))
     }, [])
@@ -17,7 +21,8 @@ function UsersProvider({ children }) {
             method: "PATCH",
             headers: {
               "Content-Type": "application/json", 
-              user_id: localStorage.getItem("userId")
+              user_id: localStorage.getItem("userId"),
+              key: "04af711a-ca6c-11ec-9d64-0242ac120002"
             },
             body: JSON.stringify({admin: !userToUpdate.admin})
         })
@@ -46,7 +51,8 @@ function UsersProvider({ children }) {
             method: "PATCH",
             headers: {
               "Content-Type": "application/json",
-              user_id: localStorage.getItem("userId")
+              user_id: localStorage.getItem("userId"),
+              key: "04af711a-ca6c-11ec-9d64-0242ac120002"
             },
             body: JSON.stringify({password: newPassword})
         })
@@ -73,7 +79,8 @@ function UsersProvider({ children }) {
         fetch(`https://morning-scrubland-82075.herokuapp.com/users/${userToUpdate.id}`, {
             method: "DELETE",
             headers: {
-              user_id: localStorage.getItem("userId")
+              user_id: localStorage.getItem("userId"),
+              key: "04af711a-ca6c-11ec-9d64-0242ac120002"
             },
         })
         .then((resp) => {

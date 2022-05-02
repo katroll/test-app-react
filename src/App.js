@@ -22,6 +22,9 @@ function App() {
   function handleSignOut(setUser) {
     fetch("/signout", {
       method: "DELETE",
+      headers: {
+        key: "04af711a-ca6c-11ec-9d64-0242ac120002"
+      }
     }).then(() => {
       navigate(`/`);
       setLoggedIn(false);

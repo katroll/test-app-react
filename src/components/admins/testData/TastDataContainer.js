@@ -18,6 +18,9 @@ function TestDataContainer() {
         const signal = controller.signal;
 
         fetch("https://morning-scrubland-82075.herokuapp.com/grades", {
+            headers: {
+                key: "04af711a-ca6c-11ec-9d64-0242ac120002"
+            },
             signal: signal
         })
         .then(resp => resp.json())

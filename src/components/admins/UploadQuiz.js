@@ -87,7 +87,10 @@ function UplaodQuiz() {
     function handleSubmitNewQuiz(testFormData, questions) {
         fetch("https://morning-scrubland-82075.herokuapp.com/quizzes", {
           method: "POST",
-          headers: {"Content-Type": "application/json"},
+          headers: {
+              "Content-Type": "application/json",
+              key: "04af711a-ca6c-11ec-9d64-0242ac120002"
+          },
           body: JSON.stringify({name: testFormData.name, category: testFormData.category, kind: testFormData.kind})
         })
         .then(resp => resp.json())
@@ -100,7 +103,10 @@ function UplaodQuiz() {
         const allFetches = questions.map(question => {
           return fetch("https://morning-scrubland-82075.herokuapp.com/questions", {
             method: "POST",
-            headers: {"Content-Type": "application/json"},
+            headers: {
+                "Content-Type": "application/json",
+                key: "04af711a-ca6c-11ec-9d64-0242ac120002"
+            },
             body: JSON.stringify({
               ...question,
               quiz_id: quizId

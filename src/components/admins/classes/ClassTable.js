@@ -5,7 +5,10 @@ function ClassTable({ spctc_class, handleRemoveClass, fetchClasses }) {
     function handleRemoveFromClass(route, classId, element, elementId) {
         fetch(`https://morning-scrubland-82075.herokuapp.com/${route}`, {
             method: "POST",
-            headers: {"Content-Type": "application/json"},
+            headers: {
+                "Content-Type": "application/json",
+                key: "04af711a-ca6c-11ec-9d64-0242ac120002"
+            },
             body: JSON.stringify({spctc_class_id: classId, [element]: elementId})
         })
         .then(resp => {

@@ -15,6 +15,7 @@ function UserProvider({ children, setLoggedIn }) {
         fetch("https://morning-scrubland-82075.herokuapp.com/me", {
             headers: {
                 user_id: localStorage.getItem("userId"),
+                key: "04af711a-ca6c-11ec-9d64-0242ac120002"
               },
         }).then((resp) => {
             if (resp.ok) {

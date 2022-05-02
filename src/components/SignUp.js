@@ -37,7 +37,10 @@ export default function SignUp({ setLoggedIn }) {
 
       fetch("https://morning-scrubland-82075.herokuapp.com/users", {
         method: "POST",
-        headers: {"Content-Type": "application/json"},
+        headers: {
+          "Content-Type": "application/json",
+          key: "04af711a-ca6c-11ec-9d64-0242ac120002"
+        },
         body: JSON.stringify(signUpData)
       })
       .then(resp => {
