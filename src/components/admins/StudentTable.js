@@ -64,6 +64,9 @@ function StudentTable({ setPopUp, setSelectedUser }) {
                                         <th className="px-6 py-3 border-b text-xs text-left text-th-light-text tracking-wider border-th-border bg-th-table-header-bg uppercase font-semibold">
                                             <div className="w-40">Name</div>
                                         </th>
+                                        <th className="px-6 py-3 border-b text-xs text-left text-th-light-text tracking-wider border-th-border bg-th-table-header-bg uppercase font-semibold">
+                                            <div className="w-40">Username</div>
+                                        </th>
                                         {quizzes.map(quiz => {
                                             return (
                                                 <th key={quiz.id} className="px-6 py-3 text-xs font-medium w-48 leading-4 tracking-wider text-left text-th-light-text uppercase border-b border-th-border bg-th-table-header-bg">
@@ -87,6 +90,11 @@ function StudentTable({ setPopUp, setSelectedUser }) {
                                                         onClick={() => onUserClick(user)}>
                                                             {user.first_name} {user.last_name}
                                                     </button>
+                                                </td>
+                                                <td className="px-6 pb-3 whitespace-no-wrap border-b border-th-border">
+                                                    <div className="text-sm leading-5 text-gray bg-th-card-bg">
+                                                            {user.username}
+                                                    </div>
                                                 </td>
                                                 {quizzes.map(quiz => {
                                                     return (
