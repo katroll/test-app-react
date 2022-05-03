@@ -3,13 +3,16 @@ import { useContext, useEffect } from "react"
 import { QuizzesContext } from "../context/Quizzes"
 import QuizTable from "./QuizTable"
 import { UserContext } from "../context/User"
+import { useState } from "react"
 
 
 function TestList() {
     let quizzes = useContext(QuizzesContext).quizzes;
-    let setQuizzes = useContext(QuizzesContext).setValue;
+    //let setQuizzes = useContext(QuizzesContext).setValue;
     const user = useContext(UserContext).user;
     const { category } = useParams();
+
+    const [quizzesToDisplay, setQuizzesToDisplay] = useState(quizzes);
 
     function allStudentsTests() {
         let allTests = [];
@@ -27,11 +30,14 @@ function TestList() {
                 }
                 return false;
             })
-            setQuizzes(studentsQuizzes);
+            setQuizzesToDisplay(studentsQuizzes);
+        } else {
+            setQuizzesToDisplay([...quizzes]);
         }
-    }, [])
 
-    const filteredQuizzes = quizzes.filter(quiz => quiz.category === category)
+    }, [user, quizzes])
+
+    const filteredQuizzes = quizzesToDisplay.filter(quiz => quiz.category === category)
     const sortedQuizzes = filteredQuizzes.sort((a,b) => (a.name > b.name) ? 1 : -1);
 
     function capitalizeFirstLetter(string) {
