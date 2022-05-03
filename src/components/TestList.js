@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom"
-import { useContext } from "react"
+import { useContext, useEffect } from "react"
 import { QuizzesContext } from "../context/Quizzes"
 import QuizTable from "./QuizTable"
 import { UserContext } from "../context/User"
@@ -7,17 +7,29 @@ import { UserContext } from "../context/User"
 
 function TestList() {
     let quizzes = useContext(QuizzesContext).quizzes;
+    let setQuizzes = useContext(QuizzesContext).setValue;
     const user = useContext(UserContext).user;
     const { category } = useParams();
 
-
-    if(!user.admin) {
-        quizzes = [];
+    function allStudentsTests() {
+        let allTests = [];
         user.spctc_classes.forEach(spctc_class => {
-            quizzes = [...quizzes, ...spctc_class.quizzes];
-        });
+            allTests = [...allTests, ...spctc_class.quizzes]
+        })
+        return allTests;
     }
 
+    useEffect(() => {
+        if(!user.admin) {
+            const studentsQuizzes = quizzes.filter(quiz => {
+                if(allStudentsTests().find(test => test.name === quiz.name)) {
+                    return true;
+                }
+                return false;
+            })
+            setQuizzes(studentsQuizzes);
+        }
+    }, [])
 
     const filteredQuizzes = quizzes.filter(quiz => quiz.category === category)
     const sortedQuizzes = filteredQuizzes.sort((a,b) => (a.name > b.name) ? 1 : -1);

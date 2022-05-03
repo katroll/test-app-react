@@ -11,6 +11,8 @@ function QuizTable({ quizzes }) {
     const [deleteTestWarning, setDeleteTestWarning] = useState(false);
     const [quizToDelete, setQuizToDelete] = useState({});
 
+    console.log(quizzes);
+
     return (
 
             <div className="flex flex-col items-center">
