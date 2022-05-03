@@ -11,7 +11,23 @@ function QuizTable({ quizzes }) {
     const [deleteTestWarning, setDeleteTestWarning] = useState(false);
     const [quizToDelete, setQuizToDelete] = useState({});
 
-    console.log(quizzes);
+    function findMaximunGrade(test) {
+        const grades = user.grades.filter(grade => grade.quiz_data.quiz.id === test.id);
+
+        console.log(grades)
+
+        if(grades.length === 0) {
+            return null;
+        }
+
+        console.log(Math.max.apply(Math, grades.map(grade =>  grade.score)))
+
+        return Math.max.apply(Math, grades.map(grade =>  grade.score));
+    }
+
+    function isTestTaken(test) {
+        return user.grades.find(grade => grade.quiz_data.quiz.id === test.id);
+    }
 
     return (
 
@@ -96,11 +112,11 @@ function QuizTable({ quizzes }) {
                                                     </>
                                                 ) : (
                                                     <>
-                                                        {user.grades.find(grade => grade.quiz_data.quiz.id === quiz.id) ? (
+                                                        {isTestTaken(quiz) ? (
                                                             <>
                                                                 <td className="text-xl border-b border-th-border text-center">✔</td> 
-                                                                <td className="text-sm border-b border-th-border text-center">{user.grades.find(grade => grade.quiz_data.quiz.name === quiz.name).score}/{quiz.questions.length}</td> 
-                                                                <td className="text-sm px-5 border-b border-th-border text-center">{user.grades.find(grade => grade.quiz_data.quiz.name === quiz.name).updated_at.slice(0,10)}</td> 
+                                                                <td className="text-sm border-b border-th-border text-center">{findMaximunGrade(quiz)}/{quiz.questions.length}</td> 
+                                                                <td className="text-sm px-5 border-b border-th-border text-center">{user.grades.find(grade => grade.score === findMaximunGrade(quiz)).updated_at.slice(0,10)}</td> 
                                                             </>
                                                         ) : (
                                                             <>
