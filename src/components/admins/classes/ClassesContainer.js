@@ -9,6 +9,8 @@ function ClassesContainer() {
     const [classes, setClasses] = useState([]);
     const sortedClasses = classes.sort((a,b) => (a.name < b.name) ? 1 : -1);
 
+    console.log(classes)
+
     useEffect(() => {
         fetchClasses();
     }, [])

@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import ExportAll from "./ExportAll";
+import ClassPieChart from "./ClassPieChart";
+import EnrollmentLineChart from "./EnrollmentLineChart";
 
 function AdminHome() {
 
@@ -26,9 +28,8 @@ function AdminHome() {
                 <h1 className="text-4xl text-th-title-text font-bold mb-5">Shortcut Actions</h1>
                 <ExportAll />
             </div>
-            <h1 className="text-4xl text-th-title-text font-bold mb-10">This Weeks Activity</h1>
-            <div className="flex bg-th-card-bg rounded-md p-5 mr-5">
-                <div className="text-slate-800 text-lg">Recently Taken Tests</div>
+            <h1 className="text-4xl text-th-title-text font-bold mb-5">Recently Taken Tests</h1>
+            <div className="flex bg-th-card-bg rounded-md p-5 mr-5 mb-5">
                 <div className="flex flex-col h-[40vh] overflow-y-scroll ml-5 border-l pl-5">
                     {grades.map(grade => {
                         return (
@@ -41,6 +42,13 @@ function AdminHome() {
                             </div>
                         )
                     })}
+                </div>
+            </div>
+            <div className="pr-5">
+                <h1 className="text-4xl text-th-title-text font-bold mb-5">Charts</h1>
+                <div className="w-full flex justify-around space-x-3"> 
+                    <EnrollmentLineChart />
+                    <ClassPieChart />
                 </div>
             </div>
 
