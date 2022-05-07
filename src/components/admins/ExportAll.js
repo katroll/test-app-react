@@ -10,6 +10,21 @@ function ExportAll() {
     const [grades, setGrades] = useState([]);
     const exportQuizzes = [];
 
+    console.log(users)
+
+    function getUsersClassList(user) {
+        const classNames = user.spctc_classes.map(spctc_class => {
+            return spctc_class.name;
+        })
+        return classNames;
+    }
+
+    const exportUsers = users.map(user => {
+        return {...user, spctc_classes: getUsersClassList(user)}
+    })
+
+    console.log(exportUsers);
+
     quizzes.forEach(quiz => {
         quiz.questions.forEach(question => {
             exportQuizzes.push({quiz_id: quiz.id, quiz_name: quiz.name, category: quiz.category, ...question});
@@ -88,6 +103,7 @@ function ExportAll() {
             {header: 'Last Name', key: 'last_name', width: 15}, 
             {header: 'Username', key: 'username', width: 15},
             {header: 'User ID', key: 'id', width: 15},
+            {header: 'Current Classes', key: 'spctc_classes', width: 25},
             {header: 'Day/Time Account Created', key: 'created_at', width: 25},
         ];
 
@@ -131,7 +147,7 @@ function ExportAll() {
 
         ];
       
-        usersWorksheet.addRows(users);
+        usersWorksheet.addRows(exportUsers);
         gradesWorksheet.addRows(exportGrades);
         testsWorksheet.addRows(exportQuizzes);
         questionsWorksheet.addRows(data);
