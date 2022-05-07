@@ -1,10 +1,13 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import ExportAll from "./ExportAll";
 import ClassPieChart from "./ClassPieChart";
-import EnrollmentLineChart from "./EnrollmentLineChart";
+
+import { UsersContext } from "../../context/Users";
+import { SpctcClassesContext } from "../../context/SpctcClasses"
 
 function AdminHome() {
-
+    const numberOfStudents = useContext(UsersContext).users.filter(user => !user.admin).length;
+    const numberOfClasses = useContext(SpctcClassesContext).spctcClasses.length;
     const [grades, setGrades] = useState([]);
 
     useEffect(() => {
@@ -47,8 +50,11 @@ function AdminHome() {
             <div className="pr-5">
                 <h1 className="text-4xl text-th-title-text font-bold mb-5">Charts</h1>
                 <div className="w-full flex justify-around space-x-3"> 
-                    <EnrollmentLineChart />
                     <ClassPieChart />
+                    <div className="flex flex-col items-center pt-3 bg-th-card-bg w-1/2 text-xl font-semibold">
+                        <h2>Number of Students: {numberOfStudents}</h2>
+                        <h2>Number of Classes: {numberOfClasses}</h2>
+                    </div>
                 </div>
             </div>
 

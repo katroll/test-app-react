@@ -1,32 +1,15 @@
 import { useState } from "react";
 
 
-function CreateNewClass({ addNewClass, onMouseEnterButton, onMouseLeaveButton }) {
+function CreateNewClass({ createSpctcClass, onMouseEnterButton, onMouseLeaveButton }) {
     const [createClass, setCreateClass] = useState(false);
     const [newClassName, setNewClassName] = useState("");
 
 
     function handleCreateNewClass(e) {
         e.preventDefault();
-
-        fetch("https://morning-scrubland-82075.herokuapp.com/spctc_classes", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                key: "04af711a-ca6c-11ec-9d64-0242ac120002"
-        },
-            body: JSON.stringify({name: newClassName})
-        })
-        .then((resp) => {
-            if (resp.ok) {
-                resp.json().then(newClass => {
-                    addNewClass(newClass);
-                    setCreateClass(false);
-                });
-            } else {
-                resp.json().then(errors => console.log(errors))
-            }
-        });
+        createSpctcClass(newClassName);
+        setCreateClass(false);
     }
 
     function addClassToggle() {

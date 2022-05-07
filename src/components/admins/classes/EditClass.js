@@ -3,7 +3,7 @@ import { QuizzesContext } from "../../../context/Quizzes"
 import { UsersContext } from "../../../context/Users"
 
 
-function EditClass({ classes, fetchClasses, onMouseEnterButton, onMouseLeaveButton }) {
+function EditClass({ classes, editSpctcClass, onMouseEnterButton, onMouseLeaveButton }) {
     const students = useContext(UsersContext).users.filter(user => !user.admin).sort((a,b) => (b.first_name.toLowerCase() < a.first_name.toLowerCase()) ? 1 : ((a.first_name.toLowerCase() < b.first_name.toLowerCase()) ? -1 : 0));
     const tests = useContext(QuizzesContext).quizzes;
     const [editClass, setEditClass] = useState(false);
@@ -68,10 +68,10 @@ function EditClass({ classes, fetchClasses, onMouseEnterButton, onMouseLeaveButt
         e.preventDefault();
 
         if(classToEdit.studentsToAdd.length > 0) {
-            handleEditClass("users_classes", "user_id", classToEdit.studentsToAdd);
+            editSpctcClass("users_classes", "user_id", classToEdit.studentsToAdd, classToEdit);
         }
         if(classToEdit.testsToAdd.length > 0) {
-            handleEditClass("quizzes_classes", "quiz_id", classToEdit.testsToAdd);
+            editSpctcClass("quizzes_classes", "quiz_id", classToEdit.testsToAdd, classToEdit);
         }
 
         setClassToEdit({
@@ -79,27 +79,8 @@ function EditClass({ classes, fetchClasses, onMouseEnterButton, onMouseLeaveButt
             studentsToAdd: [],
             testsToAdd: []
         });
+        setEditClass(false);
     }
-
-    function handleEditClass(table, elementId, updateArray) {
-        const allFetches = updateArray.map(element => {
-            return fetch(`https://morning-scrubland-82075.herokuapp.com/${table}`, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    key: "04af711a-ca6c-11ec-9d64-0242ac120002"
-                },
-                body: JSON.stringify({spctc_class_id: classToEdit.class.id, [elementId]: element.id})
-            })
-            .then(resp => resp.json())
-        }) 
-
-        Promise.all(allFetches).then(resp => {
-            fetchClasses();
-          })
-          .then(resp => setEditClass(false))
-    }
-
 
     function toggleEditClass() {
         setEditClass(!editClass);

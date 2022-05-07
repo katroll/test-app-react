@@ -24,13 +24,13 @@ function ClassPieChart() {
         <div className='w-1/2'>
             <div className='flex flex-col items-center bg-th-card-bg p-2 rounded-md'>
                 <h1 className='w-full text-center text-xl font-semibold'>Class Enrollment</h1>
-                <PieChart classname="p-0" width={400} height={300}>
+                <PieChart classname="p-0" width={400} height={250}>
                     <Pie
                         dataKey="value"
                         data={classEnrollmentData}
                         isAnimationActive={false}
                         cx={200}
-                        cy={150}
+                        cy={120}
                         outerRadius={100}
                         fill="#8884d8"
                         label
