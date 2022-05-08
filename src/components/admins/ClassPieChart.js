@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { PieChart, Pie, Legend, Tooltip, Cell} from 'recharts';
+import { PieChart, Pie, Legend, Tooltip, Cell } from 'recharts';
 
 function ClassPieChart() {
     const [classEnrollmentData, setClassEnrollemtData] = useState([]);
@@ -24,7 +24,7 @@ function ClassPieChart() {
         <div className='w-1/2'>
             <div className='flex flex-col items-center bg-th-card-bg p-2 rounded-md'>
                 <h1 className='w-full text-center text-xl font-semibold'>Class Enrollment</h1>
-                <PieChart classname="p-0" width={400} height={250}>
+                <PieChart width={400} height={250}>
                     <Pie
                         dataKey="value"
                         data={classEnrollmentData}
@@ -40,6 +40,9 @@ function ClassPieChart() {
                             ))}
                     </Pie>
                     <Tooltip />
+                    <Legend 
+                        wrapperStyle={{ bottom: 0 }}
+                    />
                 </PieChart>
             </div>
         </div>
