@@ -5,6 +5,7 @@ import { QuizzesContext } from "../context/Quizzes";
 import { UserContext } from "../context/User";
 
 import GradesBarChart from "./admins/GradesBarChart";
+import IncorrectAnswerBarChart from "./admins/IncorrectAnswerBarChart";
 
 
 function QuizViewer() {
@@ -46,8 +47,12 @@ function QuizViewer() {
 
             <div className="w-full">
                 {user.admin? (
-                    <div className="flex justify-start w-full mt-5 bg-th-card-bg rounded-md">
-                        <GradesBarChart quiz={quiz}/>
+                    <div>
+                        <div className="flex flex-col w-full mt-5 px-5 bg-th-card-bg rounded-md">
+                            <GradesBarChart quiz={quiz}/>
+                            <IncorrectAnswerBarChart quiz={quiz} />
+                        </div>
+                        <h1 className="text-4xl text-th-title-text font-bold uppercase tracking-wider text-center w-full pt-5">Questions</h1>
                     </div>
                 ) : null}
             </div>

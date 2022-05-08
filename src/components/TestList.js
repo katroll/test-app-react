@@ -8,7 +8,6 @@ import { useState } from "react"
 
 function TestList() {
     let quizzes = useContext(QuizzesContext).quizzes;
-    //let setQuizzes = useContext(QuizzesContext).setValue;
     const user = useContext(UserContext).user;
     const { category } = useParams();
 

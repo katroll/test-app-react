@@ -23,7 +23,7 @@ function GradesBarChart({ quiz }) {
   }
 
     return (
-      <div className="flex flex-col items-center w-full">
+      <div className="flex flex-col items-center w-full border-b border-th-border py-5">
         <h1 className="py-2 text-center text-xl font-semibold">Histogram of Student Scores</h1>
         <BarChart
           width={1000}
@@ -38,7 +38,7 @@ function GradesBarChart({ quiz }) {
         >
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis dataKey="name" label={{ value: "Score", position: "insideLeft", dy: 20, dx: 30}}  />
-          <YAxis allowDecimals={false} label={{ value: "Number of Students", position: "center", angle: -90,   dy: -10}} />
+          <YAxis allowDecimals={false} label={{ value: "Number of Students", position: "center", angle: -90,   dy: -10, dx: -10}} />
           <Tooltip />
           <Bar dataKey="first_attempt" fill="#95d6f5" />
           <Bar dataKey="last_attempt" fill="#1f57be" />

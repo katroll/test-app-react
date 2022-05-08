@@ -13,15 +13,9 @@ function QuizTable({ quizzes }) {
 
     function findMaximunGrade(test) {
         const grades = user.grades.filter(grade => grade.quiz_data.quiz.id === test.id);
-
-        console.log(grades)
-
         if(grades.length === 0) {
             return null;
         }
-
-        console.log(Math.max.apply(Math, grades.map(grade =>  grade.score)))
-
         return Math.max.apply(Math, grades.map(grade =>  grade.score));
     }
 
