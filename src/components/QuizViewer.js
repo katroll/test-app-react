@@ -46,7 +46,7 @@ function QuizViewer() {
 
             <div className="w-full">
                 {user.admin? (
-                    <div className="flex justify-start w-1/2 mt-5 bg-th-card-bg rounded-md">
+                    <div className="flex justify-start w-full mt-5 bg-th-card-bg rounded-md">
                         <GradesBarChart quiz={quiz}/>
                     </div>
                 ) : null}
