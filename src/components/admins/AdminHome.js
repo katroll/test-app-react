@@ -51,7 +51,7 @@ function AdminHome() {
                 <h1 className="text-4xl text-th-title-text font-bold mb-5">Charts</h1>
                 <div className="w-full flex justify-around space-x-3"> 
                     <ClassPieChart />
-                    <div className="flex flex-col items-center pt-3 bg-th-card-bg w-1/2 text-xl font-semibold">
+                    <div className="flex flex-col items-center pt-3 bg-th-card-bg w-1/2 text-xl font-semibold rounded-md">
                         <h2>Number of Students: {numberOfStudents}</h2>
                         <h2>Number of Classes: {numberOfClasses}</h2>
                     </div>

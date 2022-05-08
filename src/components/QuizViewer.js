@@ -4,6 +4,8 @@ import { useContext, useEffect, useState } from "react"
 import { QuizzesContext } from "../context/Quizzes";
 import { UserContext } from "../context/User";
 
+import GradesBarChart from "./admins/GradesBarChart";
+
 
 function QuizViewer() {
     const quizzes = useContext(QuizzesContext).quizzes;
@@ -13,8 +15,6 @@ function QuizViewer() {
     const quiz = quizzes.find(quiz => quiz.name.replace(/\s+/g, '') === name.replace(/\s+/g, ''));
 
     const [answers, setAnswers] = useState([]);
-
-    console.log(answers);
 
     useEffect(() => {
         if(!user.admin) {
@@ -43,6 +43,14 @@ function QuizViewer() {
     return (
         <div className="flex flex-col pt-10 items-center min-h-screen w-full pl-12 pr-10">
             <h1 className="text-4xl text-th-title-text font-bold uppercase tracking-wider">{user.admin ? `${quiz.name}` : "Results"}</h1>
+
+            <div className="w-full">
+                {user.admin? (
+                    <div className="flex justify-start w-1/2 mt-5 bg-th-card-bg rounded-md">
+                        <GradesBarChart quiz={quiz}/>
+                    </div>
+                ) : null}
+            </div>
             <ul className="flex flex-col justify-start mt-5 w-full">
                 {quiz.questions.map((question, i) => {
                     return (
