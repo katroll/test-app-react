@@ -4,6 +4,8 @@ import { useContext, useState } from "react"
 import { UserContext } from "../context/User"
 import TestDeletePopup from "./TestDeletePopup";
 
+import changeTimeZone from "./Utilities/ChangeTimeZone";
+
 
 
 function QuizTable({ quizzes }) {
@@ -22,6 +24,7 @@ function QuizTable({ quizzes }) {
     function isTestTaken(test) {
         return user.grades.find(grade => grade.quiz_data.quiz.id === test.id);
     }
+
 
     return (
 
@@ -82,7 +85,7 @@ function QuizTable({ quizzes }) {
                                                 {user.admin ? (
                                                     <>
                                                         <td className="px-6 py-4 border-b border-th-border">
-                                                            {quiz.created_at.slice(0,10)}
+                                                            {changeTimeZone(new Date(quiz.created_at), "Asia/Kolkata").slice(0,9)}
                                                         </td>
                                                         <td className="px-6 py-4 border-b border-th-border">
                                                             {quiz.grades.length}
@@ -110,7 +113,7 @@ function QuizTable({ quizzes }) {
                                                             <>
                                                                 <td className="text-xl border-b border-th-border text-center">✔</td> 
                                                                 <td className="text-sm border-b border-th-border text-center">{findMaximunGrade(quiz)}/{quiz.questions.length}</td> 
-                                                                <td className="text-sm px-5 border-b border-th-border text-center">{user.grades.find(grade => grade.score === findMaximunGrade(quiz)).updated_at.slice(0,10)}</td> 
+                                                                <td className="text-sm px-5 border-b border-th-border text-center">{changeTimeZone(new Date(user.grades.find(grade => grade.score === findMaximunGrade(quiz)).updated_at), "Asia/Kolkata")}</td> 
                                                             </>
                                                         ) : (
                                                             <>

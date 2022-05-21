@@ -4,6 +4,8 @@ import {saveAs} from "file-saver";
 import { useContext, useState } from "react";
 import { QuizzesContext } from "../../context/Quizzes";
 
+import changeTimeZone from "../Utilities/ChangeTimeZone";
+
 function ExportAll() {
     const quizzes = useContext(QuizzesContext).quizzes;
     const [users, setUsers] = useState([]);
@@ -20,7 +22,7 @@ function ExportAll() {
     }
 
     const exportUsers = users.map(user => {
-        return {...user, spctc_classes: getUsersClassList(user)}
+        return {...user, spctc_classes: getUsersClassList(user), created_at: changeTimeZone(new Date(user.created_at), "Asia/Kolkata")}
     })
 
     console.log(exportUsers);
@@ -44,6 +46,9 @@ function ExportAll() {
             userId: grade.user.id,
             testId: grade.quiz_data.quiz.id,
             testCategory: grade.quiz_data.quiz.category,
+            updated_at: changeTimeZone(new Date(grade.updated_at), "Asia/Kolkata"),
+            start_time: changeTimeZone(new Date(grade.start_time), "Asia/Kolkata")
+
         }
     })
 
@@ -61,8 +66,8 @@ function ExportAll() {
                 testScore: grade.score,
                 questionNumber: index + 1,
                 correct: results[index] === question.answer ? "Yes" : "No",
-                completedAt: grade.updated_at,
-                startedAt: grade.start_time,
+                completedAt: changeTimeZone(new Date(grade.updated_at), "Asia/Kolkata"),
+                startedAt: changeTimeZone(new Date(grade.start_time), "Asia/Kolkata"),
             }
         })
     }).flat();
@@ -104,7 +109,7 @@ function ExportAll() {
             {header: 'Username', key: 'username', width: 15},
             {header: 'User ID', key: 'id', width: 15},
             {header: 'Current Classes', key: 'spctc_classes', width: 25},
-            {header: 'Day/Time Account Created', key: 'created_at', width: 25},
+            {header: 'Day/Time Account Created', key: 'created_at', width: 30},
         ];
 
         gradesWorksheet.columns = [
@@ -116,8 +121,8 @@ function ExportAll() {
             {header: 'Number of Questions', key: 'numOfQuestions', width: 20},
             {header: 'Score', key: 'score', width: 15},
             {header: 'Results', key: 'results', width: 15},
-            {header: 'Day/Time Started', key: 'start_time', width: 25},
-            {header: 'Day/Time Completed', key: 'updated_at', width: 25},
+            {header: 'Day/Time Started', key: 'start_time', width: 30},
+            {header: 'Day/Time Completed', key: 'updated_at', width: 30},
         ];
 
         testsWorksheet.columns = [
@@ -142,8 +147,8 @@ function ExportAll() {
             {header: 'Grade ID', key: 'gradeId', width: 15},
             {header: 'Question Number', key: 'questionNumber', width: 15},
             {header: 'Correct', key: 'correct', width: 15},
-            {header: 'Started At', key: 'startedAt', width: 25},
-            {header: 'Completed At', key: 'completedAt', width: 25},
+            {header: 'Started At', key: 'startedAt', width: 30},
+            {header: 'Completed At', key: 'completedAt', width: 30},
 
         ];
       

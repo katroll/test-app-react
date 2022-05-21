@@ -9,6 +9,8 @@ import CorrectAnswerFilter from "./CorrectAnswerFilter";
 
 import FilteredDataTable from "./FilteredDataTable";
 
+import changeTimeZone from "../../Utilities/ChangeTimeZone";
+
 
 function TestDataContainer() {
     const [grades, setGrades] = useState([]);
@@ -102,6 +104,7 @@ function TestDataContainer() {
         []
       )
 
+
     const data = grades.map(grade => {
         const results = grade.results;
         return grade.quiz_data.questions.sort((a, b) => a.number - b.number).map((question, index) => {
@@ -117,21 +120,19 @@ function TestDataContainer() {
                 testScore: grade.score,
                 questionNumber: index + 1,
                 correct: results[index] === question.answer ? "Yes" : "No",
-                completedAt: `${grade.updated_at.slice(0,10)} - ${grade.updated_at.slice(11, 19)}`,
-                startedAt: `${grade.start_time.slice(0,10)} - ${grade.start_time.slice(11, 19)}`,
+                completedAt: `${changeTimeZone(new Date(grade.updated_at), 'Asia/Kolkata')}`,
+                startedAt: `${changeTimeZone(new Date(grade.start_time), 'Asia/Kolkata')}`,
             }
         })
     }).flat();
 
     async function handleExcelExport(rows) {
         const exportData = rows.map(row => {
-            row.values.startedAt = `${row.values.startedAt.slice(0,10)}T${row.values.startedAt.slice(13)}Z`
-            row.values.completedAt = `${row.values.completedAt.slice(0,10)}T${row.values.completedAt.slice(13)}Z`
             return row.values;
         })
        
         const workbook = new Excel.Workbook();
-        const worksheet = workbook.addWorksheet("My Sheet");
+        const worksheet = workbook.addWorksheet("Testing Data");
 
         worksheet.columns = [
             {header: 'First Name', key: 'firstName', width: 10},
@@ -143,8 +144,8 @@ function TestDataContainer() {
             {header: 'Test Score', key: 'testScore', width: 15},
             {header: 'Question Number', key: 'questionNumber', width: 15},
             {header: 'Correct?', key: 'correct', width: 15},
-            {header: 'Day/Time Started', key: 'startedAt', width: 15},
-            {header: 'Day/Time Completed', key: 'completedAt', width: 15},
+            {header: 'Day/Time Started', key: 'startedAt', width: 30},
+            {header: 'Day/Time Completed', key: 'completedAt', width: 30},
           ];
 
       

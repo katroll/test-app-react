@@ -1,3 +1,5 @@
+import changeTimeZone from "./Utilities/ChangeTimeZone";
+
 
 function StudentGrades({ user, height }) {
     console.log(user);
@@ -39,7 +41,7 @@ function StudentGrades({ user, height }) {
                                                     {`${grade.score}/${grade.results.length}`}
                                                 </td>
                                                 <td className="px-6 py-4 whitespace-no-wrap border-b border-light-gray text-sm leading-5 text-gray">
-                                                    {grade.updated_at.slice(0,10)}
+                                                    {changeTimeZone(new Date(grade.updated_at), "Asia/Kolkata")}
                                                 </td>
                                             </tr>
                                     ))}

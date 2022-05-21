@@ -5,6 +5,8 @@ import ClassPieChart from "./ClassPieChart";
 import { UsersContext } from "../../context/Users";
 import { SpctcClassesContext } from "../../context/SpctcClasses"
 
+import changeTimeZone from "../Utilities/ChangeTimeZone";
+
 function AdminHome() {
     const numberOfStudents = useContext(UsersContext).users.filter(user => !user.admin).length;
     const numberOfClasses = useContext(SpctcClassesContext).spctcClasses.length;
@@ -40,7 +42,7 @@ function AdminHome() {
                                 <div className="mx-2 py-1">{grade.user.first_name} {grade.user.last_name}</div>
                                 <div className="bg-light-blue border-l border-yellow px-3 py-1 mx-1">{grade.quiz_data.quiz.name}</div>
                                 <div className="bg-light-blue border-l border-yellow px-3 py-1 mx-1">{grade.score}/{grade.results.length}</div>
-                                <div className="bg-light-blue border-l border-yellow px-3 py-1 mx-1">{grade.updated_at.slice(0,10)} at {grade.updated_at.slice(11, 19)}</div>
+                                <div className="bg-light-blue border-l border-yellow px-3 py-1 mx-1">{changeTimeZone(new Date(grade.updated_at), 'Asia/Kolkata')}</div>
 
                             </div>
                         )
