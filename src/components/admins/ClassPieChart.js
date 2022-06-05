@@ -18,19 +18,21 @@ function ClassPieChart() {
         .then(data => setClassEnrollemtData(data))
       }
 
-      const COLORS = ["#1f57be", "#95d6f5", "#4CAF50"];
+      const COLORS = ["#1f57be", "#95d6f5", "#4CAF50","#f27f33", "#8884d8"];
+
+      console.log(classEnrollmentData)
 
     return (
         <div className='w-1/2'>
             <div className='flex flex-col items-center bg-th-card-bg p-2 rounded-md'>
                 <h1 className='w-full text-center text-xl font-semibold'>Class Enrollment</h1>
-                <PieChart width={400} height={250}>
+                <PieChart width={400} height={300}>
                     <Pie
                         dataKey="value"
                         data={classEnrollmentData}
                         isAnimationActive={false}
                         cx={200}
-                        cy={120}
+                        cy={130}
                         outerRadius={100}
                         fill="#8884d8"
                         label

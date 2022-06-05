@@ -23,8 +23,6 @@ function ExportAll() {
         return {...user, spctc_classes: getUsersClassList(user), created_at: changeTimeZone(new Date(user.created_at), "Asia/Kolkata")}
     })
 
-    console.log(exportUsers);
-
     quizzes.forEach(quiz => {
         quiz.questions.forEach(question => {
             exportQuizzes.push({quiz_id: quiz.id, quiz_name: quiz.name, category: quiz.category, ...question});
