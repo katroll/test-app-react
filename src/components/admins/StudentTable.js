@@ -61,16 +61,16 @@ function StudentTable({ setPopUp, setSelectedUser }) {
                             <table className="reletive">
                                 <thead className="">
                                     <tr>
-                                        <th className="px-6 py-3 border-b text-xs text-left text-th-light-text tracking-wider border-th-border bg-th-table-header-bg uppercase font-semibold">
+                                        <th className="px-6 py-3 border-b border-r text-xs text-left text-th-light-text tracking-wider border-th-border bg-th-table-header-bg uppercase font-semibold">
                                             <div className="w-40">Name</div>
                                         </th>
-                                        <th className="px-6 py-3 border-b text-xs text-left text-th-light-text tracking-wider border-th-border bg-th-table-header-bg uppercase font-semibold">
+                                        <th className="px-6 py-3 border-b border-r text-xs text-left text-th-light-text tracking-wider border-th-border bg-th-table-header-bg uppercase font-semibold">
                                             <div className="w-40">Username</div>
                                         </th>
                                         {quizzes.map(quiz => {
                                             return (
-                                                <th key={quiz.id} className="px-6 py-3 text-xs font-medium w-48 leading-4 tracking-wider text-left text-th-light-text uppercase border-b border-th-border bg-th-table-header-bg">
-                                                   <div className="w-36 font-semibold"> {quiz.name}</div>
+                                                <th key={quiz.id} className="px-6 py-3 text-xs font-medium border-r border-th-border leading-4 tracking-wider text-left text-th-light-text uppercase border-b border-th-border bg-th-table-header-bg">
+                                                   <div className="w-56 font-semibold"> {quiz.name}</div>
                                                 </th>
                                             )
                                         })}
