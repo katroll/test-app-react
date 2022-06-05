@@ -25,7 +25,6 @@ function AdminHome() {
         });
     }, [])
 
-
     return (
         <div className="pt-10 pl-12 flex flex-col justify-start">
             <div className="flex flex-col justify-start">
@@ -36,7 +35,7 @@ function AdminHome() {
             <h1 className="text-4xl text-th-title-text font-bold mb-5">Recently Taken Tests</h1>
             <div className="flex bg-th-card-bg rounded-md p-5 mr-5 mb-5">
                 <div className="flex flex-col h-[40vh] overflow-y-scroll ml-5 border-l pl-5">
-                    {grades.map(grade => {
+                    {grades.slice(0,100).map(grade => {
                         return (
                             <div key={grade.id} className="flex py-2 bg-th-light-blue-bg my-1 px-2 rounded">
                                 <div className="mx-2 py-1">{grade.user.first_name} {grade.user.last_name}</div>

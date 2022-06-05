@@ -12,8 +12,6 @@ function ExportAll() {
     const [grades, setGrades] = useState([]);
     const exportQuizzes = [];
 
-    console.log(users)
-
     function getUsersClassList(user) {
         const classNames = user.spctc_classes.map(spctc_class => {
             return spctc_class.name;
